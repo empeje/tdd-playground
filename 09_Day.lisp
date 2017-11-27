@@ -34,13 +34,17 @@
       (add-record (phone-book name the-number)))
 
 ;; select
-;; this is still not pass the test from hackerank since can't handle eof
 (loop
- (setq name (read-line))
- (setq the-name (getf (nth 0 (select-by-name name)) :NAME))
- (setq the-number (getf (nth 0 (select-by-name name)) :NUMBER))
+ (setq name (read-line nil nil))
  (cond
-        ((equal NIL the-name)
-         (format t "Not found~%"))
-        (t
-         (format t "~a=~a~%"  name the-number))))
+     ((equal NIL name)
+      (quit))
+     (t
+      (setq the-name (getf (nth 0 (select-by-name name)) :NAME))
+      (setq the-number (getf (nth 0 (select-by-name name)) :NUMBER))
+      (cond
+          ((equal NIL the-name)
+           (format t "Not found~%"))
+          (t
+           (format t "~a=~a~%"  name the-number))))))
+    

@@ -1,0 +1,19 @@
+{
+  "name": "pisau-dapur",
+  "version": "0.0.1",
+  "description": "Personal algorithm learning journey.",
+  "main": "src/index.js",
+  "repository": "git@github.com:empeje/pisau-dapur.git",
+  "author": "empeje <https://github.com/empeje>",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0"
+  },
+  "dependencies": {
+    "esm": "^3.2.25"
+  },
+  "scripts": {
+    "test": "npx mocha -r esm test/**/*.test.js"
+  }
+}

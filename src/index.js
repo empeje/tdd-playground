@@ -77,3 +77,15 @@ export const memoizeClosureTimesM = m => {
     return cache[number];
   };
 };
+
+export const memoize = callback => {
+  const cache = {};
+
+  return args => {
+    if(!cache[args]){
+      console.log('this code should not be executed if result exist');
+      cache[args] = callback(args);
+    }
+    return cache[args];
+  };
+};

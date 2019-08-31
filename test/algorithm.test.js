@@ -4,6 +4,7 @@ import {
   cachedTimes10,
   memoizeClosureTimes10,
   memoizeClosureTimesM,
+  memoize,
   isUnique,
   isUniqueBreadcrumb,
   uniqSort
@@ -64,6 +65,15 @@ describe('algorithms', () => {
         const calculator = memoizeClosureTimesM(12);
         expect(calculator(1)).to.equal(12);
         expect(calculator(1)).to.equal(12);
+      });
+    });
+
+    describe('generic memoize', () => {
+      it('should memoize any function', () => {
+        const times10 = n => n * 10;
+        const calculator = memoize(times10);
+        expect(calculator(9)).to.equal(90);
+        expect(calculator(9)).to.equal(90);
       });
     });
   });

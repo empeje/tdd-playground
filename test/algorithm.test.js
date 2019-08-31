@@ -1,6 +1,12 @@
 import { expect } from 'chai';
 import { describe } from 'mocha'
-import { isUnique, isUniqueBreadcrumb, uniqSort } from "../src";
+import {
+  cachedTimes10,
+  memoizeClosureTimes10,
+  isUnique,
+  isUniqueBreadcrumb,
+  uniqSort
+} from "../src";
 
 describe('algorithms', () => {
   describe('isUnique', () => {
@@ -27,6 +33,23 @@ describe('algorithms', () => {
     it('should not return any duplicate values in the sorted array', () => {
       expect(uniqSort([4,2,2,3,2,2,2])).to.deep.equal([2,3,4]);
      expect(uniqSort([1,5,4,1,1])).to.deep.equal([1,4,5]);
+    });
+  });
+
+  describe('times10', () => {
+    describe('cachedTimes10', () => {
+      it('should calculate times 10 correctly', () => {
+        expect(cachedTimes10(1)).to.equal(10);
+        expect(cachedTimes10(1)).to.equal(10);
+      });
+    });
+
+    describe('memoizeClosureTimes10', () => {
+      it('should calculate times 10 correctly', () => {
+        const calculator = memoizeClosureTimes10();
+        expect(calculator(1)).to.equal(10);
+        expect(calculator(1)).to.equal(10);
+      });
     });
   });
 });

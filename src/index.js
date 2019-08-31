@@ -65,3 +65,15 @@ export const memoizeClosureTimes10 = () => {
     return cache[number];
   };
 };
+
+export const memoizeClosureTimesM = m => {
+  const cache = {};
+
+  return number => {
+    if(!cache[number]){
+      console.log('this code should not be executed if result exist');
+      cache[number] = number * m;
+    }
+    return cache[number];
+  };
+};

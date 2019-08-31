@@ -3,6 +3,7 @@ import { describe } from 'mocha'
 import {
   cachedTimes10,
   memoizeClosureTimes10,
+  memoizeClosureTimesM,
   isUnique,
   isUniqueBreadcrumb,
   uniqSort
@@ -49,6 +50,20 @@ describe('algorithms', () => {
         const calculator = memoizeClosureTimes10();
         expect(calculator(1)).to.equal(10);
         expect(calculator(1)).to.equal(10);
+      });
+    });
+
+    describe('memoizeClosureTimesM', () => {
+      it('should calculate times M correctly when M = 10', () => {
+        const calculator = memoizeClosureTimesM(10);
+        expect(calculator(1)).to.equal(10);
+        expect(calculator(1)).to.equal(10);
+      });
+
+      it('should calculate times M correctly when M = 12', () => {
+        const calculator = memoizeClosureTimesM(12);
+        expect(calculator(1)).to.equal(12);
+        expect(calculator(1)).to.equal(12);
       });
     });
   });

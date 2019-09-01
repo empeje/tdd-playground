@@ -81,12 +81,14 @@ export const memoizeClosureTimesM = m => {
 export const memoize = callback => {
   const cache = {};
 
-  return args => {
-    if(!cache[args]){
-      console.log('this code should not be executed if result exist');
-      cache[args] = callback(args);
+  return (...args) => {
+    const argsHash = JSON.stringify({...args});
+    if(!cache[argsHash]){
+      console.log('INFO: updating cache');
+      cache[argsHash] = callback(args);
     }
-    return cache[args];
+    console.log('INFO: using cache');
+    return cache[argsHash];
   };
 };
 

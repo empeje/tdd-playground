@@ -133,5 +133,5 @@ export const linearSearch = (list, item) => {
       return { error: false, index: i, value: item }
     }
   }
-  return { error: true, message: 'NOT FOUND' }
+  return { error: true, index: -1 }
 };

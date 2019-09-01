@@ -128,7 +128,7 @@ describe('algorithms', () => {
 
       it('should return error not found when item not in the list', () =>{
         expect(linearSearch([2,6,7,90,103], 1))
-          .to.deep.equal({ error: true, message: 'NOT FOUND' });
+          .to.deep.equal({ error: true, index: -1 });
       });
     });
   })

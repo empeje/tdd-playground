@@ -258,6 +258,7 @@ const merge = (left, right) => {
 };
 
 export const mergeSort = list => {
+  // below are the divide part
   if(list.length < 2) return list;
   const centerOfList = Math.floor(list.length / 2);
   const leftList = list.slice(0, centerOfList);
@@ -266,5 +267,5 @@ export const mergeSort = list => {
   const sortedLeftList = mergeSort(leftList);
   const sortedRightList = mergeSort(rightList);
 
-  return merge(sortedLeftList, sortedRightList);
+  return merge(sortedLeftList, sortedRightList); // this is the conquer part
 };

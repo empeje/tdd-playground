@@ -89,3 +89,33 @@ export const memoize = callback => {
     return cache[args];
   };
 };
+
+export const joinElements = (array, joinString) => {
+  const recurse = (index, resultSoFar) => {
+    resultSoFar += array[index];
+
+    if(index === array.length - 2) {
+      return resultSoFar;
+    } else {
+      return recurse(index + 1, resultSoFar + joinString)
+    }
+  };
+
+  return recurse(0, '');
+};
+
+export const joinElementsIterative = (array, joinString) => {
+  let resultSoFar = '';
+
+  for(let index = 0; index < array.length - 1; index++){
+    resultSoFar += array[index];
+    if(index !== array.length - 2) resultSoFar += joinString;
+  }
+  return resultSoFar;
+};
+
+export const joinElementsMemoized = (array, joinString, resultSoFar = '', index = 0) => {
+  resultSoFar += array[index];
+  if(index === array.length - 2) return resultSoFar;
+  return joinElementsMemoized(array, joinString, resultSoFar + joinString, index + 1) ;
+};

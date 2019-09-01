@@ -5,6 +5,9 @@ import {
   memoizeClosureTimes10,
   memoizeClosureTimesM,
   memoize,
+  joinElements,
+  joinElementsIterative,
+  joinElementsMemoized,
   isUnique,
   isUniqueBreadcrumb,
   uniqSort
@@ -74,6 +77,26 @@ describe('algorithms', () => {
         const calculator = memoize(times10);
         expect(calculator(9)).to.equal(90);
         expect(calculator(9)).to.equal(90);
+      });
+    });
+  });
+
+  describe('recursion', () => {
+    describe('recursive', () => {
+      it('should return correct results', () => {
+        expect(joinElements(['s', 'cr', 't cod', ' :) :)', 'e'], 'e')).to.equal('secret code :) :)')
+      });
+    });
+
+    describe('memoize', () => {
+      it('should return correct results', () => {
+        expect(joinElementsMemoized(['s', 'cr', 't cod', ' :) :)', 'e'], 'e')).to.equal('secret code :) :)')
+      });
+    });
+
+    describe('iterative', () => {
+      it('should return correct results', () => {
+        expect(joinElementsIterative(['s', 'cr', 't cod', ' :) :)', 'e'], 'e')).to.equal('secret code :) :)')
       });
     });
   });

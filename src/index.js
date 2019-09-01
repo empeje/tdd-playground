@@ -161,19 +161,16 @@ const swap = (list, index1, index2) =>{
 };
 
 export const bubbleSort = list => {
-  let swapCount;
-  let pointer;
   for(let i = 0; i < list.length; i++) {
-    swapCount = 0;
-    pointer = i;
+    let swapped = false;
     for(let j = 0; j < list.length; j++) {
-      if(pointer !== j && list[pointer] < list[j]) {
-        swap(list, i, j);
-        pointer = j;
-        swapCount++;
+      console.log('this code is executed');
+      if(list[j] > list[j+1]) {
+        swap(list, j, j+1);
+        swapped = true;
       }
     }
-    if(swapCount === 0) break;
+    if(swapped === false) break;
   }
   return list;
 };

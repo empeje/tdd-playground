@@ -153,3 +153,27 @@ export const binarySearch = (list, item) => {
 
   return -1;
 };
+
+const swap = (list, index1, index2) =>{
+  const temp = list[index1];
+  list[index1] = list[index2];
+  list[index2] = temp;
+};
+
+export const bubbleSort = list => {
+  let swapCount;
+  let pointer;
+  for(let i = 0; i < list.length; i++) {
+    swapCount = 0;
+    pointer = i;
+    for(let j = 0; j < list.length; j++) {
+      if(pointer !== j && list[pointer] < list[j]) {
+        swap(list, i, j);
+        pointer = j;
+        swapCount++;
+      }
+    }
+    if(swapCount === 0) break;
+  }
+  return list;
+};

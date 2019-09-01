@@ -13,7 +13,8 @@ import {
   isUniqueBreadcrumb,
   uniqSort,
   linearSearch,
-  binarySearch
+  binarySearch,
+  bubbleSort
 } from "../src";
 
 describe('algorithms', () => {
@@ -141,6 +142,13 @@ describe('algorithms', () => {
       it('should return error not found when item not in the list', () =>{
         expect(binarySearch([2,6,7,90,103], 1)).to.equal(-1);
       });
+    });
+
+    describe('bubble sort', () => {
+      it('should return correct results', () => {
+        expect(bubbleSort([5,1,4,2,8])).to.deep.equal([1,2,4,5,8]);
+        expect(bubbleSort([33,3,5,5,2,34,234,2,3,134,14,3])).to.deep.equal( [33,3,5,5,2,34,234,2,3,134,14,3].sort((a,b) => a-b));
+      })
     });
   })
 });

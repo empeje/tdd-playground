@@ -269,3 +269,21 @@ export const mergeSort = list => {
 
   return merge(sortedLeftList, sortedRightList); // this is the conquer part
 };
+
+export const makeChange = (coins, amount) => {
+  coins.sort((a, b) => b - a);
+
+  let i = 0;
+  let results = {coinTotal: 0, coinSet: []};
+  while(amount > 0) {
+    if(coins[i] <= amount) {
+      amount -= coins[i];
+      results.coinSet.push(coins[i]);
+      results.coinTotal++;
+    } else {
+      i++;
+    }
+  }
+
+  return results;
+};

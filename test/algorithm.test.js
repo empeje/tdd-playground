@@ -19,7 +19,8 @@ import {
   min,
   selectionSort,
   insertionSort,
-  mergeSort
+  mergeSort,
+  makeChange
 } from "../src";
 
 describe('algorithms', () => {
@@ -189,5 +190,18 @@ describe('algorithms', () => {
         expect(mergeSort([33,3,5,5,2,34,234,2,3,134,14,3])).to.deep.equal( [33,3,5,5,2,34,234,2,3,134,14,3].sort((a,b) => a-b));
       });
     });
-  })
+  });
+
+  describe('greedy algorithm', () => {
+    describe('make changes', () => {
+      it('should return correct answers', () => {
+        expect(makeChange([5,10,25], 50)).to.deep.equal({ coinTotal: 2, coinSet: [ 25, 25 ] });
+      });
+    });
+
+    describe('make changes brute force', () => {
+      it('should return correct answers', () => {
+      });
+    });
+  });
 });

@@ -18,7 +18,8 @@ import {
   bubbleSortWhile,
   min,
   selectionSort,
-  insertionSort
+  insertionSort,
+  mergeSort
 } from "../src";
 
 describe('algorithms', () => {
@@ -179,6 +180,13 @@ describe('algorithms', () => {
       it('should return correct results', () => {
         expect(insertionSort([5,1,4,2,8])).to.deep.equal([1,2,4,5,8]);
         expect(insertionSort([33,3,5,5,2,34,234,2,3,134,14,3])).to.deep.equal( [33,3,5,5,2,34,234,2,3,134,14,3].sort((a,b) => a-b));
+      });
+    });
+
+    describe('merge sort', () => {
+      it('should return correct results', () => {
+        expect(mergeSort([5,1,4,2,8])).to.deep.equal([1,2,4,5,8]);
+        expect(mergeSort([33,3,5,5,2,34,234,2,3,134,14,3])).to.deep.equal( [33,3,5,5,2,34,234,2,3,134,14,3].sort((a,b) => a-b));
       });
     });
   })

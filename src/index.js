@@ -232,3 +232,39 @@ export const insertionSort = list => {
   }
   return list;
 };
+
+const merge = (left, right) => {
+  let results = [];
+
+  while(left.length && right.length){
+    const leftValue = left[0];
+    const rightValue = right[0];
+
+    if(leftValue <= rightValue) {
+      results.push(leftValue);
+      left = left.slice(1);
+    } else {
+      results.push(rightValue);
+      right = right.slice(1);
+    }
+  }
+
+  while(left.length) results.push(left.shift());
+  while(right.length) results.push(right.shift());
+
+  // console.log({left, right, results});
+
+  return results;
+};
+
+export const mergeSort = list => {
+  if(list.length < 2) return list;
+  const centerOfList = Math.floor(list.length / 2);
+  const leftList = list.slice(0, centerOfList);
+  const rightList = list.slice(centerOfList, list.length);
+
+  const sortedLeftList = mergeSort(leftList);
+  const sortedRightList = mergeSort(rightList);
+
+  return merge(sortedLeftList, sortedRightList);
+};

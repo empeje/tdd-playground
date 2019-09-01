@@ -14,7 +14,8 @@ import {
   uniqSort,
   linearSearch,
   binarySearch,
-  bubbleSort
+  bubbleSort,
+  bubbleSortWhile
 } from "../src";
 
 describe('algorithms', () => {
@@ -148,6 +149,13 @@ describe('algorithms', () => {
       it('should return correct results', () => {
         expect(bubbleSort([5,1,4,2,8])).to.deep.equal([1,2,4,5,8]);
         expect(bubbleSort([33,3,5,5,2,34,234,2,3,134,14,3])).to.deep.equal( [33,3,5,5,2,34,234,2,3,134,14,3].sort((a,b) => a-b));
+      })
+    });
+
+    describe('bubble sort while loop', () => {
+      it('should return correct results', () => {
+        expect(bubbleSortWhile([5,1,4,2,8])).to.deep.equal([1,2,4,5,8]);
+        expect(bubbleSortWhile([33,3,5,5,2,34,234,2,3,134,14,3])).to.deep.equal( [33,3,5,5,2,34,234,2,3,134,14,3].sort((a,b) => a-b));
       })
     });
   })

@@ -164,7 +164,6 @@ export const bubbleSort = list => {
   for(let i = 0; i < list.length; i++) {
     let swapped = false;
     for(let j = 0; j < list.length; j++) {
-      console.log('this code is executed');
       if(list[j] > list[j+1]) {
         swap(list, j, j+1);
         swapped = true;
@@ -172,5 +171,20 @@ export const bubbleSort = list => {
     }
     if(swapped === false) break;
   }
+  return list;
+};
+
+export const bubbleSortWhile = list => {
+  let swapped = true;
+  while(swapped) {
+    swapped = false;
+    for(let i = 0; i < list.length; i++) {
+      if(list[i] > list[i+1]) {
+        swap(list, i, i+1);
+        swapped = true;
+      }
+    }
+  }
+
   return list;
 };

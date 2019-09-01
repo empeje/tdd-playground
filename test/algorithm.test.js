@@ -12,7 +12,8 @@ import {
   isUnique,
   isUniqueBreadcrumb,
   uniqSort,
-  linearSearch
+  linearSearch,
+  binarySearch
 } from "../src";
 
 describe('algorithms', () => {
@@ -129,6 +130,16 @@ describe('algorithms', () => {
       it('should return error not found when item not in the list', () =>{
         expect(linearSearch([2,6,7,90,103], 1))
           .to.deep.equal({ error: true, index: -1 });
+      });
+    });
+
+    describe('binary search', () => {
+      it('should return correct results', () => {
+        expect(binarySearch([2,6,7,90,103], 90)).to.equal(3);
+      });
+
+      it('should return error not found when item not in the list', () =>{
+        expect(binarySearch([2,6,7,90,103], 1)).to.equal(-1);
       });
     });
   })

@@ -135,3 +135,21 @@ export const linearSearch = (list, item) => {
   }
   return { error: true, index: -1 }
 };
+
+export const binarySearch = (list, item) => {
+  let min = 0;
+  let max = list.length - 1;
+  let guess;
+
+  while(min <= max) {
+    guess = Math.floor((min + max) / 2);
+    // console.log({min, max, guess, item, guessValue: list[guess]});
+
+    if(list[guess] === item) return guess;
+
+    if (list[guess] < item) min = guess + 1;
+    if (list[guess] > item) max = guess - 1;
+  }
+
+  return -1;
+};

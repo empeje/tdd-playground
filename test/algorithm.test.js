@@ -163,7 +163,7 @@ describe('algorithms', () => {
 
     describe('min', () => {
       it('should return correct results', () => {
-       expect(min([3,5,6,4,3,1,1,34,5,6])).to.equal(1);
+       expect(min([3,5,6,4,3,1,1,34,5,6])).to.deep.equal({ value: 1, index: 5 });
       });
     });
 

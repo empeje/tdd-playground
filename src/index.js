@@ -1,13 +1,15 @@
 export const min = arr => {
-  let result = arr[0];
+  let value = arr[0];
+  let index = 0;
 
   for(let i = 1; i < arr.length; i++) {
-    if(result > arr[i]) {
-      result = arr[i];
+    if(value > arr[i]) {
+      value = arr[i];
+      index = i;
     }
   }
 
-  return result;
+  return { value, index };
 };
 
 export const isUnique = (arr) => {
@@ -207,9 +209,9 @@ export const selectionSort = list => {
 
   for(let i = 0; i < len; i++) {
     // console.log(results, list);
-    const index = list.findIndex(value => value === min(list));
-    results.push(list[index]);
-    list.splice(index,1);
+    const minimum = min(list);
+    results.push(minimum.value);
+    list.splice(minimum.index, 1);
   }
 
   return results;

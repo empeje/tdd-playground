@@ -126,3 +126,12 @@ export const factorial = number => {
   if (number <= 1) return 1;
   return number * factorial(number-1);
 };
+
+export const linearSearch = (list, item) => {
+  for(let i = 0 ; i < list.length; i++) {
+    if (list[i] === item) {
+      return { error: false, index: i, value: item }
+    }
+  }
+  return { error: true, message: 'NOT FOUND' }
+};

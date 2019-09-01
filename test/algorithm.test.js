@@ -11,7 +11,8 @@ import {
   joinElementsMemoized,
   isUnique,
   isUniqueBreadcrumb,
-  uniqSort
+  uniqSort,
+  linearSearch
 } from "../src";
 
 describe('algorithms', () => {
@@ -117,4 +118,18 @@ describe('algorithms', () => {
       });
     });
   });
+
+  describe('divide and conquer', () => {
+    describe('linear search', () => {
+      it('should return correct results', () => {
+        expect(linearSearch([2,6,7,90,103], 90))
+          .to.deep.equal({ error: false, index: 3, value: 90 });
+      });
+
+      it('should return error not found when item not in the list', () =>{
+        expect(linearSearch([2,6,7,90,103], 1))
+          .to.deep.equal({ error: true, message: 'NOT FOUND' });
+      });
+    });
+  })
 });

@@ -197,6 +197,10 @@ describe('algorithms', () => {
       it('should return correct answers', () => {
         expect(makeChange([5,10,25], 50)).to.deep.equal({ coinTotal: 2, coinSet: [ 25, 25 ] });
       });
+
+      it('should return incorrect answers when it is not optimized', () => {
+        expect(makeChange([1,6,10], 12)).to.not.deep.equal({ coinTotal: 2, coinSet: [ 6, 6 ] });
+      })
     });
 
     describe('make changes brute force', () => {

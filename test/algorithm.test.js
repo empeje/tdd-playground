@@ -5,6 +5,7 @@ import {
   memoizeClosureTimes10,
   memoizeClosureTimesM,
   memoize,
+  factorial,
   joinElements,
   joinElementsIterative,
   joinElementsMemoized,
@@ -97,6 +98,22 @@ describe('algorithms', () => {
     describe('iterative', () => {
       it('should return correct results', () => {
         expect(joinElementsIterative(['s', 'cr', 't cod', ' :) :)', 'e'], 'e')).to.equal('secret code :) :)')
+      });
+    });
+
+    describe('factorial', () => {
+      describe('recursive', () => {
+        it('should return correct results', () => {
+          expect(factorial(5)).to.equal(120);
+        })
+      });
+
+      describe('memoize', () => {
+        it('should return correct results', () => {
+          const calculator = memoize(factorial);
+          expect(calculator(5)).to.equal(120);
+          expect(calculator(5)).to.equal(120);
+        })
       });
     });
   });

@@ -119,3 +119,8 @@ export const joinElementsMemoized = (array, joinString, resultSoFar = '', index 
   if(index === array.length - 2) return resultSoFar;
   return joinElementsMemoized(array, joinString, resultSoFar + joinString, index + 1) ;
 };
+
+export const factorial = number => {
+  if (number <= 1) return 1;
+  return number * factorial(number-1);
+};

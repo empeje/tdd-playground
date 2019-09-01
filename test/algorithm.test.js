@@ -15,7 +15,9 @@ import {
   linearSearch,
   binarySearch,
   bubbleSort,
-  bubbleSortWhile
+  bubbleSortWhile,
+  min,
+  selectionSort
 } from "../src";
 
 describe('algorithms', () => {
@@ -156,6 +158,19 @@ describe('algorithms', () => {
       it('should return correct results', () => {
         expect(bubbleSortWhile([5,1,4,2,8])).to.deep.equal([1,2,4,5,8]);
         expect(bubbleSortWhile([33,3,5,5,2,34,234,2,3,134,14,3])).to.deep.equal( [33,3,5,5,2,34,234,2,3,134,14,3].sort((a,b) => a-b));
+      })
+    });
+
+    describe('min', () => {
+      it('should return correct results', () => {
+       expect(min([3,5,6,4,3,1,1,34,5,6])).to.equal(1);
+      });
+    });
+
+    describe('selection sort', () => {
+      it('should return correct results', () => {
+        expect(selectionSort([5,1,4,2,8])).to.deep.equal([1,2,4,5,8]);
+        expect(selectionSort([33,3,5,5,2,34,234,2,3,134,14,3])).to.deep.equal( [33,3,5,5,2,34,234,2,3,134,14,3].sort((a,b) => a-b));
       })
     });
   })

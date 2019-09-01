@@ -1,3 +1,15 @@
+export const min = arr => {
+  let result = arr[0];
+
+  for(let i = 1; i < arr.length; i++) {
+    if(result > arr[i]) {
+      result = arr[i];
+    }
+  }
+
+  return result;
+};
+
 export const isUnique = (arr) => {
   let result = true;
 
@@ -187,4 +199,18 @@ export const bubbleSortWhile = list => {
   }
 
   return list;
+};
+
+export const selectionSort = list => {
+  const len = list.length;
+  let results = [];
+
+  for(let i = 0; i < len; i++) {
+    // console.log(results, list);
+    const index = list.findIndex(value => value === min(list));
+    results.push(list[index]);
+    list.splice(index,1);
+  }
+
+  return results;
 };

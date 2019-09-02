@@ -99,7 +99,7 @@ export const memoize = callback => {
     const argsHash = JSON.stringify({...args});
     if(!cache[argsHash]){
       console.log('INFO: updating cache');
-      cache[argsHash] = callback(args);
+      cache[argsHash] = callback(...args);
     }
     console.log('INFO: using cache');
     return cache[argsHash];
@@ -302,4 +302,36 @@ export const makeChangeBruteForce = (coins, amount) => {
   });
 
   return minCoins + 1;
+};
+
+export const makeChangeBruteForceMemoized = (coins, amount) => {
+  const cache = {};
+  let cacheHit = 0;
+  let cacheMiss = 0;
+
+  const recurse = (amount) => {
+    if (cache[amount]) {
+      cacheHit++;
+      return cache[amount];
+    }
+    cacheMiss++;
+    if (amount === 0) return 0;
+
+    let minCoins = -1;
+    coins.forEach((coin) => {
+      if (amount - coin >= 0) {
+        let currentMinCoins = recurse(amount - coin);
+        if (minCoins === -1 || currentMinCoins < minCoins) {
+          minCoins = currentMinCoins;
+        }
+      }
+    });
+    const finalMinCoins = minCoins+1;
+    cache[amount] = finalMinCoins;
+    return finalMinCoins;
+  };
+
+  const results = recurse(amount);
+  console.log({cacheMiss, cacheHit});
+  return results;
 };

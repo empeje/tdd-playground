@@ -21,7 +21,8 @@ import {
   insertionSort,
   mergeSort,
   makeChange,
-  makeChangeBruteForce
+  makeChangeBruteForce,
+  makeChangeBruteForceMemoized
 } from "../src";
 
 describe('algorithms', () => {
@@ -209,8 +210,20 @@ describe('algorithms', () => {
         expect(makeChangeBruteForce([5,10,25], 50)).to.equal(2);
       });
 
-      it('should return incorrect answers when it is not optimized', () => {
+      it('should return correct answers', () => {
         expect(makeChangeBruteForce([1,6,10], 12)).to.equal(2);
+      });
+    });
+  });
+
+  describe('dynamic programming', () => {
+    describe('make changes brute force', () => {
+      it('should return correct answers', () => {
+        expect(makeChangeBruteForceMemoized([5,10,25], 50)).to.equal(2);
+      });
+
+      it('should return correct answers', () => {
+        expect(makeChangeBruteForceMemoized([1,6,10], 12)).to.equal(2);
       });
     });
   });

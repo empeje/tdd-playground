@@ -56,7 +56,7 @@ describe('data structure implementation', () => {
     });
 
     it('should not be able to pop empty stack', () => {
-      expect(newStack.pop()).to.be.null;
+      expect(newStack.pop()).to.be.undefined;
     });
 
     it('should be able to swap two top most elements', () => {
@@ -69,5 +69,23 @@ describe('data structure implementation', () => {
       expect(newStack._storage[newStack.size()]).to.equal('test value 1');
       expect(newStack._storage[newStack.size() - 1]).to.equal('test value 2');
     });
+  });
+
+  describe('queue', () => {
+    it('should be able to enqueue', () => {
+
+    });
+
+    it('should be able to dequeue', () => {
+
+    });
+  });
+
+  describe('linked list', () => {
+
+  });
+
+  describe('hash table', () => {
+
   });
 });

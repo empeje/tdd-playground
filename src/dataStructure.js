@@ -59,7 +59,7 @@ class Queue {
 
   constructor() {
     this._storage = {};
-    this._head = 1;
+    this._head = 0;
     this._size = 0;
   }
   /*
@@ -67,8 +67,8 @@ class Queue {
   * @param {*} value the value to enqueue
   */
   enqueue(value) {
-    this._size++;
     this._storage[this._size] = value;
+    this._size++;
   }
 
   /*

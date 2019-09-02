@@ -90,6 +90,7 @@ describe('data structure implementation', () => {
 
       newQueue.enqueue('this is test 2');
       expect(newQueue._storage[newQueue._head]).to.equal('this is test 1');
+      expect(newQueue._storage[newQueue._head + 1]).to.equal('this is test 2');
     });
 
     it('should be able to dequeue', () => {

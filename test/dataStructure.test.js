@@ -1,7 +1,8 @@
 import { expect } from 'chai';
 import { describe, beforeEach } from 'mocha'
 import {
-  Stack
+  Stack,
+  Queue
 } from "../src/dataStructure";
 
 describe('data structure implementation', () => {
@@ -72,12 +73,39 @@ describe('data structure implementation', () => {
   });
 
   describe('queue', () => {
-    it('should be able to enqueue', () => {
+    let newQueue;
 
+    beforeEach(() => {
+      newQueue = new Queue();
+    });
+
+    it('should be able to enqueue', () => {
+      newQueue.enqueue('this is test');
+      expect(newQueue._storage[-newQueue._size]).to.equal('this is test');
+    });
+
+    it('should be able to enqueue more than one', () => {
+      newQueue.enqueue('this is test 1');
+      expect(newQueue._storage[-newQueue._size]).to.equal('this is test 1');
+
+      newQueue.enqueue('this is test 2');
+      expect(newQueue._storage[-newQueue._size]).to.equal('this is test 2');
     });
 
     it('should be able to dequeue', () => {
+      newQueue.enqueue('this is test 1');
+      newQueue.enqueue('this is test 2');
+      newQueue.dequeue();
+      expect(newQueue._storage[-newQueue._size]).to.equal('this is test 1');
+    });
 
+    it('should not be able to dequeue empty queue', () => {
+      expect(newQueue.dequeue()).to.be.undefined;
+    });
+
+    it('should be able to peek', () => {
+      newQueue.enqueue('this is test 1');
+      expect(newQueue.peek()).to.equal('this is test 1');
     });
   });
 

@@ -52,6 +52,48 @@ class Stack {
   }
 }
 
+/** Class representing a Queue.
+ * @constructor
+ */
+class Queue {
+
+  constructor() {
+    this._storage = {};
+    this._size = 0;
+  }
+  /*
+  * Enqueues a new value at the end of the queue
+  * @param {*} value the value to enqueue
+  */
+  enqueue(value) {
+    this._size++;
+    this._storage[-this._size] = value;
+  }
+
+  /*
+  * Dequeues the value from the beginning of the queue and returns it
+  * @return {*} the first and oldest value in the queue
+  */
+  dequeue() {
+    if(this._size) {
+      const results = this._storage[-this._size];
+      delete this._storage[-this._size];
+      this._size--;
+      return results;
+    }
+  }
+  /*
+  * Returns the value at the beginning of the queue without removing it from the queue
+  * @return {*} the first and oldest value in the queue
+  */
+  peek() {
+    if(this._size) {
+      return this._storage[-this._size];
+    }
+  }
+}
+
 export {
-  Stack
+  Stack,
+  Queue
 }

@@ -129,7 +129,16 @@ describe('data structure implementation', () => {
 
       newQueue.enqueue('this is test 2');
       expect(newQueue.size()).to.equal(2);
-    })
+    });
+
+    it('should be able to enqueue after a dequeue', () => {
+      newQueue.enqueue('this is test 1');
+      newQueue.enqueue('this is test 2');
+      newQueue.dequeue();
+      newQueue.enqueue('this is test 3');
+      expect(newQueue._storage[1]).to.equal('this is test 2');
+      expect(newQueue._storage[2]).to.equal('this is test 3');
+    });
   });
 
   describe('linked list', () => {

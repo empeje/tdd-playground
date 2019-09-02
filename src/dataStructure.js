@@ -67,7 +67,7 @@ class Queue {
   * @param {*} value the value to enqueue
   */
   enqueue(value) {
-    this._storage[this._size] = value;
+    this._storage[this._size + this._head] = value;
     this._size++;
   }
 

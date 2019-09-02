@@ -19,21 +19,21 @@ class Stack {
   * @return {*} the last and newest value in the stack
   */
   pop() {
-    if(this._size === 0) return null;
-
-    const results = this._storage[this._size];
-
-    delete this._storage[this._size];
-    this._size --;
-    
-    return results;
+    if(this._size){
+      const results = this._storage[this._size];
+      delete this._storage[this._size];
+      this._size --;
+      return results;
+    }
   }
   /*
   * Returns the value at the end of the stack without removing it
   * @return {*} the last and newest value in the stack
   */
   peek() {
-    return this._storage[this._size];
+    if(this._size){
+      return this._storage[this._size];
+    }
   }
 
   size() {

@@ -59,6 +59,7 @@ class Queue {
 
   constructor() {
     this._storage = {};
+    this._head = 1;
     this._size = 0;
   }
   /*
@@ -67,7 +68,7 @@ class Queue {
   */
   enqueue(value) {
     this._size++;
-    this._storage[-this._size] = value;
+    this._storage[this._size] = value;
   }
 
   /*
@@ -76,9 +77,10 @@ class Queue {
   */
   dequeue() {
     if(this._size) {
-      const results = this._storage[-this._size];
-      delete this._storage[-this._size];
+      const results = this._storage[this._head];
+      delete this._storage[this._head];
       this._size--;
+      this._head++;
       return results;
     }
   }
@@ -88,8 +90,12 @@ class Queue {
   */
   peek() {
     if(this._size) {
-      return this._storage[-this._size];
+      return this._storage[this._head];
     }
+  }
+
+  size() {
+    return this._size;
   }
 }
 

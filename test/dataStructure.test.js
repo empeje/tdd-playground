@@ -81,23 +81,37 @@ describe('data structure implementation', () => {
 
     it('should be able to enqueue', () => {
       newQueue.enqueue('this is test');
-      expect(newQueue._storage[-newQueue._size]).to.equal('this is test');
+      expect(newQueue._storage[newQueue._head]).to.equal('this is test');
     });
 
     it('should be able to enqueue more than one', () => {
       newQueue.enqueue('this is test 1');
-      expect(newQueue._storage[-newQueue._size]).to.equal('this is test 1');
+      expect(newQueue._storage[newQueue._head]).to.equal('this is test 1');
 
       newQueue.enqueue('this is test 2');
-      expect(newQueue._storage[-newQueue._size]).to.equal('this is test 2');
+      expect(newQueue._storage[newQueue._head]).to.equal('this is test 1');
     });
 
     it('should be able to dequeue', () => {
       newQueue.enqueue('this is test 1');
       newQueue.enqueue('this is test 2');
       newQueue.dequeue();
-      expect(newQueue._storage[-newQueue._size]).to.equal('this is test 1');
+      expect(newQueue._storage[newQueue._head]).to.equal('this is test 2');
     });
+
+    it('should be able to dequeue more than one', () => {
+      newQueue.enqueue('this is test 1');
+      newQueue.enqueue('this is test 2');
+      newQueue.enqueue('this is test 3');
+
+      expect(newQueue.dequeue()).to.equal('this is test 1');
+      expect(newQueue._storage[newQueue._head]).to.equal('this is test 2');
+
+      expect(newQueue.dequeue()).to.equal('this is test 2');
+      expect(newQueue._storage[newQueue._head]).to.equal('this is test 3');
+    });
+
+
 
     it('should not be able to dequeue empty queue', () => {
       expect(newQueue.dequeue()).to.be.undefined;
@@ -107,6 +121,14 @@ describe('data structure implementation', () => {
       newQueue.enqueue('this is test 1');
       expect(newQueue.peek()).to.equal('this is test 1');
     });
+
+    it('should be able to return size', () => {
+      newQueue.enqueue('this is test 1');
+      expect(newQueue.size()).to.equal(1);
+
+      newQueue.enqueue('this is test 2');
+      expect(newQueue.size()).to.equal(2);
+    })
   });
 
   describe('linked list', () => {

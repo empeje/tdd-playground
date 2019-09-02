@@ -20,7 +20,8 @@ import {
   selectionSort,
   insertionSort,
   mergeSort,
-  makeChange
+  makeChange,
+  makeChangeBruteForce
 } from "../src";
 
 describe('algorithms', () => {
@@ -205,6 +206,11 @@ describe('algorithms', () => {
 
     describe('make changes brute force', () => {
       it('should return correct answers', () => {
+        expect(makeChangeBruteForce([5,10,25], 50)).to.equal(2);
+      });
+
+      it('should return incorrect answers when it is not optimized', () => {
+        expect(makeChangeBruteForce([1,6,10], 12)).to.equal(2);
       });
     });
   });

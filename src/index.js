@@ -287,3 +287,19 @@ export const makeChange = (coins, amount) => {
 
   return results;
 };
+
+export const makeChangeBruteForce = (coins, amount) => {
+  if(amount === 0) return 0;
+
+  let minCoins = -1;
+  coins.forEach((coin) => {
+    if (amount - coin >= 0) {
+      let currentMinCoins = makeChangeBruteForce(coins, amount - coin);
+      if(minCoins === -1 || currentMinCoins < minCoins) {
+        minCoins = currentMinCoins;
+      }
+    }
+  });
+
+  return minCoins + 1;
+};

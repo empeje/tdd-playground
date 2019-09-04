@@ -209,6 +209,25 @@ describe('data structure implementation', () => {
       expect(newLinkedList.isTail(newLinkedList.tail)).to.be.true;
       expect(newLinkedList.isTail(newLinkedList.head)).to.be.true;
     });
+
+    it('should be able to search value', () => {
+      newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
+      expect(newLinkedList.search('this is test 1')[0].value)
+        .to.equal('this is test 1');
+    });
+
+    it('should return empty array if search value does not exist', () => {
+      newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
+      expect(newLinkedList.search('this is test 3')).to.deep.equal([]);
+    });
+
+    it('should be able to remove head', () => {});
+
+    it('should be able to remove tail', () => {});
+
+    it('should be able to remove node in the middle', () => {});
   });
 
   describe('hash table', () => {

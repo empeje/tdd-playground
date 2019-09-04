@@ -153,6 +153,19 @@ class LinkedList {
     this.tail.next = null;
   }
 
+  search(value) {
+    let results = [];
+    let currentNode = this.head;
+    while(currentNode.next) { // handling general case
+      if (currentNode.value === value) results.push(currentNode);
+      currentNode = currentNode.next;
+    }
+
+    if(currentNode.value === value) results.push(currentNode); //handling begin-end of list
+
+    return results;
+  }
+
   /*
   * Searches the linked list and returns true if it contains the value passed
   * @param {*} value - the value to search for

@@ -230,9 +230,8 @@ describe('data structure implementation', () => {
       newLinkedList.insert('this is test 1');
       newLinkedList.insert('this is test 2');
       newLinkedList.insert('this is test 3');
-      const [node] = newLinkedList.search('this is test 1');
 
-      newLinkedList.remove(node);
+      newLinkedList.remove(newLinkedList.head);
       expect(newLinkedList.head.value).to.equal('this is test 2');
       expect(newLinkedList.head.next.value).to.equal('this is test 3');
     });
@@ -241,9 +240,8 @@ describe('data structure implementation', () => {
       newLinkedList.insert('this is test 1');
       newLinkedList.insert('this is test 2');
       newLinkedList.insert('this is test 3');
-      const [node] = newLinkedList.search('this is test 3');
 
-      newLinkedList.remove(node);
+      newLinkedList.remove(newLinkedList.tail);
       expect(newLinkedList.tail.value).to.equal('this is test 2');
       expect(newLinkedList.tail.next).to.be.null;
     });

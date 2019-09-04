@@ -159,6 +159,15 @@ class LinkedList {
   * @return {boolean} - true if value is found, otherwise false
   */
   contains(value) {
+    let currentNode = this.head;
+    while(currentNode.next) { // handling general case
+      if (currentNode.value === value) return true;
+      currentNode = currentNode.next;
+    }
+
+    if(currentNode.value === value) return true; //handling begin-end of list
+
+    return false;
   }
 
   /*

@@ -184,6 +184,19 @@ describe('data structure implementation', () => {
       expect(newLinkedList.tail.value).to.equal('this is test 2');
       expect(newLinkedList.tail.next).to.be.null;
     });
+
+    it('should be able to check if linked list contain value', () => {
+      newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
+      expect(newLinkedList.contains('this is test 1')).to.be.true;
+      expect(newLinkedList.contains('this is test 2')).to.be.true;
+    });
+
+    it('should be able to check if linked list not contain value', () => {
+      newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
+      expect(newLinkedList.contains('this is test 3')).to.be.false;
+    });
   });
 
   describe('hash table', () => {

@@ -220,6 +220,7 @@ class HashTable {
   constructor(size) {
     this._size = size;
     this._storage = [];
+    this._utilization = 0;
   }
   /*
   * Inserts a new key-value pair
@@ -227,10 +228,13 @@ class HashTable {
   * @param {*} value - the value to insert
   */
   insert(key, value, storage = this._storage) {
+    if(this._utilization >= this._size / 2) this.resize(this._size * 2);
+
     const hash = this._hash(key);
     if(!storage[hash]) storage[hash] = [];
     if(storage[hash].find(value => value[0] === key)) return;
-    storage[hash].push([key, value])
+    storage[hash].push([key, value]);
+    this._utilization++;
   }
 
   /*

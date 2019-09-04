@@ -328,6 +328,20 @@ describe('data structure implementation', () => {
         .find(value => value[0][1] === testData[1].value)).to.deep.equal([[testData[1].key, testData[1].value]]);
     });
 
+    it('should auto resize', () => {
+      let counter = 0;
+      const insertSomething = () => {
+        newHashTable.insert(JSON.stringify(counter), counter);
+        counter++;
+      };
+
+      for(let i = 0; i <= 14; i++) {
+        insertSomething();
+      }
+
+      expect(newHashTable._size).to.greaterThan(25);
+    });
+
     it('should be able to remove', () => {
       newHashTable.insert(testData[0].key, testData[0].value);
       newHashTable.remove(testData[0].key);

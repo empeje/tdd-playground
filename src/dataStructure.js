@@ -228,7 +228,8 @@ class HashTable {
   */
   insert(key, value) {
     const hash = this._hash(key);
-    this._storage[hash] = value;
+    if(!this._storage[hash]) this._storage[hash] = [];
+    this._storage[hash].push([key, value])
   }
 
   /*

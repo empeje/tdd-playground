@@ -262,23 +262,44 @@ describe('data structure implementation', () => {
 
   describe('hash table', () => {
     let newHashTable;
-    const testData = [{ key: 'testKey1', value: 'testValue1' }, { key: 'testKey2', value: 'testValue2' }];
+    const testData = [
+      { key: 'testKey1', value: 'testValue1' },
+      { key: 'testKey2', value: 'testValue2' },
+      { key: 'testKeyP', value: 'testValue3' },
+      { key: 'testKey((', value: 'testValue4' },
+    ];
 
     beforeEach(() => {
       newHashTable = new HashTable(25);
     });
 
     it('should be able to insert', () => {
-      const testData = { key: 'testKey', value: 'testValue' };
-      newHashTable.insert(testData.key, testData.value);
-      expect(newHashTable._storage.find(value => value === testData.value)).to.equal(testData.value);
+      newHashTable.insert(testData[0].key, testData[0].value);
+      expect(newHashTable._storage
+        .filter(value => value !== undefined)
+        .find(value => value[0][1] === testData[0].value)).to.deep.equal([[testData[0].key, testData[0].value]]);
+    });
+
+    it('should be able to handle collision when insert more than one', () => {
+      newHashTable.insert(testData[2].key, testData[2].value);
+      newHashTable.insert(testData[3].key, testData[3].value);
+      expect(newHashTable._storage
+        .filter(value => value !== undefined)
+        .find(value => value[0][1] === testData[2].value)).to.deep.equal([[testData[2].key, testData[2].value], [testData[3].key, testData[3].value]]);
+      expect(newHashTable._storage
+        .filter(value => value !== undefined)
+        .find(value => value[1][1] === testData[3].value)).to.deep.equal([[testData[2].key, testData[2].value], [testData[3].key, testData[3].value]]);
     });
 
     it('should be able to insert more than one', () => {
       newHashTable.insert(testData[0].key, testData[0].value);
       newHashTable.insert(testData[1].key, testData[1].value);
-      expect(newHashTable._storage.find(value => value === testData[0].value)).to.equal(testData[0].value);
-      expect(newHashTable._storage.find(value => value === testData[1].value)).to.equal(testData[1].value);
+      expect(newHashTable._storage
+        .filter(value => value !== undefined)
+        .find(value => value[0][1] === testData[0].value)).to.deep.equal([[testData[0].key, testData[0].value]]);
+      expect(newHashTable._storage
+        .filter(value => value !== undefined)
+        .find(value => value[0][1] === testData[1].value)).to.deep.equal([[testData[1].key, testData[1].value]]);
     });
 
     it('should be able to remove', () => {
@@ -289,7 +310,7 @@ describe('data structure implementation', () => {
 
     it('should be able to retrieve', () => {
       newHashTable.insert(testData[0].key, testData[0].value);
-      expect(newHashTable.retrieve(testData[0].key)).to.equal(testData[0].value);
+      expect(newHashTable.retrieve(testData[0].key)).to.deep.equal([[testData[0].key, testData[0].value]]);
     });
   });
 });

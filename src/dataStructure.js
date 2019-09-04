@@ -226,10 +226,10 @@ class HashTable {
   * @param {string} key - the key associated with the value
   * @param {*} value - the value to insert
   */
-  insert(key, value) {
+  insert(key, value, storage = this._storage) {
     const hash = this._hash(key);
-    if(!this._storage[hash]) this._storage[hash] = [];
-    this._storage[hash].push([key, value])
+    if(!storage[hash]) storage[hash] = [];
+    storage[hash].push([key, value])
   }
 
   /*
@@ -253,6 +253,18 @@ class HashTable {
     const hash = this._hash(key);
     return this._storage[hash];
   }
+
+  resize(newSize) {
+    const newStorage = [];
+    this._size = newSize;
+    this._storage.forEach(subStorage => {
+      subStorage.forEach(item => {
+        this.insert(item[0], item[1], newStorage);
+      })
+    });
+
+    this._storage = newStorage;
+  };
 
   /*
   * Hashes string value into an integer that can be mapped to an array index

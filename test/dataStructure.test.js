@@ -302,6 +302,20 @@ describe('data structure implementation', () => {
         .find(value => value[0][1] === testData[1].value)).to.deep.equal([[testData[1].key, testData[1].value]]);
     });
 
+    it('should be able to resize', () => {
+      newHashTable.insert(testData[0].key, testData[0].value);
+      newHashTable.insert(testData[1].key, testData[1].value);
+      newHashTable.resize(75);
+
+      expect(newHashTable._size).to.equal(75);
+      expect(newHashTable._storage
+        .filter(value => value !== undefined)
+        .find(value => value[0][1] === testData[0].value)).to.deep.equal([[testData[0].key, testData[0].value]]);
+      expect(newHashTable._storage
+        .filter(value => value !== undefined)
+        .find(value => value[0][1] === testData[1].value)).to.deep.equal([[testData[1].key, testData[1].value]]);
+    });
+
     it('should be able to remove', () => {
       newHashTable.insert(testData[0].key, testData[0].value);
       newHashTable.remove(testData[0].key);

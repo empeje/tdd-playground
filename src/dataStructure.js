@@ -144,15 +144,12 @@ class LinkedList {
   * @return {*} - the removed value
   */
   removeTail() {
-    let beforeTail;
-
-    let node = this.head;
-    while(!beforeTail) {
-      if(node.next === this.tail) beforeTail = node;
-      node = node.next;
+    let currentNode = this.head;
+    while(currentNode.next !== this.tail) {
+      currentNode = currentNode.next;
     }
 
-    this.tail = beforeTail;
+    this.tail = currentNode;
     this.tail.next = null;
   }
 

@@ -251,7 +251,7 @@ class HashTable {
   */
   retrieve(key) {
     const hash = this._hash(key);
-    return this._storage[hash];
+    return this._storage[hash].find(value => value[0] === key)[1];
   }
 
   resize(newSize) {

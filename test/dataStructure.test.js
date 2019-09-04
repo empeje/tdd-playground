@@ -324,7 +324,7 @@ describe('data structure implementation', () => {
 
     it('should be able to retrieve', () => {
       newHashTable.insert(testData[0].key, testData[0].value);
-      expect(newHashTable.retrieve(testData[0].key)).to.deep.equal([[testData[0].key, testData[0].value]]);
+      expect(newHashTable.retrieve(testData[0].key)).to.deep.equal(testData[0].value);
     });
   });
 });

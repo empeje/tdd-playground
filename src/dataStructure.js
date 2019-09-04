@@ -239,9 +239,13 @@ class HashTable {
   */
   remove(key) {
     const hash = this._hash(key);
-    const result = this._storage[hash];
-    delete this._storage[hash];
-    return result
+
+    const resultIndex = this._storage[hash].findIndex(value => value[0] === key);
+    const result = this._storage[hash][resultIndex][1];
+
+    this._storage[hash].splice(resultIndex, 1);
+
+    return result;
   }
 
   /*
@@ -251,7 +255,8 @@ class HashTable {
   */
   retrieve(key) {
     const hash = this._hash(key);
-    return this._storage[hash].find(value => value[0] === key)[1];
+    const rawQueryResult = this._storage[hash].find(value => value[0] === key);
+    if(rawQueryResult) return rawQueryResult[1];
   }
 
   resize(newSize) {

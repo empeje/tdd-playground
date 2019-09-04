@@ -307,6 +307,7 @@ describe('data structure implementation', () => {
       newHashTable.insert(testData[1].key, testData[1].value);
       newHashTable.resize(75);
 
+      expect(newHashTable._storage.length).to.greaterThan(25);
       expect(newHashTable._size).to.equal(75);
       expect(newHashTable._storage
         .filter(value => value !== undefined)
@@ -319,12 +320,12 @@ describe('data structure implementation', () => {
     it('should be able to remove', () => {
       newHashTable.insert(testData[0].key, testData[0].value);
       newHashTable.remove(testData[0].key);
-      expect(newHashTable._storage.find(value => value === testData[0].value)).to.be.undefined;
+      expect(newHashTable.retrieve(testData[0].key)).to.be.undefined;
     });
 
     it('should be able to retrieve', () => {
       newHashTable.insert(testData[0].key, testData[0].value);
-      expect(newHashTable.retrieve(testData[0].key)).to.deep.equal(testData[0].value);
+      expect(newHashTable.retrieve(testData[0].key)).to.equal(testData[0].value);
     });
   });
 });

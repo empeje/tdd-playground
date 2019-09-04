@@ -189,14 +189,11 @@ class LinkedList {
   */
   contains(value) {
     let currentNode = this.head;
-    while(currentNode.next) { // handling general case
-      if (currentNode.value === value) return true;
+    while(currentNode.next && currentNode.value !== value) {
       currentNode = currentNode.next;
     }
 
-    if(currentNode.value === value) return true; //handling begin-end of list
-
-    return false;
+    return currentNode.value === value;
   }
 
   /*

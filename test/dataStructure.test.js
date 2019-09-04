@@ -3,7 +3,8 @@ import { describe, beforeEach } from 'mocha'
 import {
   Stack,
   Queue,
-  LinkedList
+  LinkedList,
+  HashTable
 } from "../src/dataStructure";
 
 describe('data structure implementation', () => {
@@ -260,6 +261,35 @@ describe('data structure implementation', () => {
   });
 
   describe('hash table', () => {
+    let newHashTable;
+    const testData = [{ key: 'testKey1', value: 'testValue1' }, { key: 'testKey2', value: 'testValue2' }];
 
+    beforeEach(() => {
+      newHashTable = new HashTable(25);
+    });
+
+    it('should be able to insert', () => {
+      const testData = { key: 'testKey', value: 'testValue' };
+      newHashTable.insert(testData.key, testData.value);
+      expect(newHashTable._storage.find(value => value === testData.value)).to.equal(testData.value);
+    });
+
+    it('should be able to insert more than one', () => {
+      newHashTable.insert(testData[0].key, testData[0].value);
+      newHashTable.insert(testData[1].key, testData[1].value);
+      expect(newHashTable._storage.find(value => value === testData[0].value)).to.equal(testData[0].value);
+      expect(newHashTable._storage.find(value => value === testData[1].value)).to.equal(testData[1].value);
+    });
+
+    it('should be able to remove', () => {
+      newHashTable.insert(testData[0].key, testData[0].value);
+      newHashTable.remove(testData[0].key);
+      expect(newHashTable._storage.find(value => value === testData[0].value)).to.be.undefined;
+    });
+
+    it('should be able to retrieve', () => {
+      newHashTable.insert(testData[0].key, testData[0].value);
+      expect(newHashTable.retrieve(testData[0].key)).to.equal(testData[0].value);
+    });
   });
 });

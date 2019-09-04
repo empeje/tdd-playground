@@ -260,13 +260,13 @@ class HashTable {
   * @param {number} n - the size of the storage array
   * @return {number} - an integer between 0 and n
   */
-  _hash(str) {
+  _hash(str, size=this._size) {
     let sum = 0;
     for (let i = 0; i < str.length; i++) {
       sum += str.charCodeAt(i) * 3;
     }
 
-    return sum % this._size;
+    return sum % size;
   }
 }
 

@@ -174,6 +174,15 @@ describe('data structure implementation', () => {
       const anotherNewLinkedList = new LinkedList('this is test');
       expect(anotherNewLinkedList.head.value).to.equal('this is test');
     });
+
+    it('should be able to remove tail', () => {
+      newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
+      newLinkedList.insert('this is test 3');
+
+      newLinkedList.removeTail();
+      expect(newLinkedList.tail.value).to.equal('this is test 2');
+    });
   });
 
   describe('hash table', () => {

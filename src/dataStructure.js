@@ -176,6 +176,7 @@ class LinkedList {
   * @return {boolean} - true if node is the head, otherwise false
   */
   isHead(node) {
+    return node === this.head;
   }
 
   /*
@@ -184,6 +185,7 @@ class LinkedList {
   * @return {boolean} - true if node is the tail, otherwise false
   */
   isTail(node) {
+    return node === this.tail;
   }
 }
 

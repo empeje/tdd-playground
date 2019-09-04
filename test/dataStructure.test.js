@@ -197,6 +197,18 @@ describe('data structure implementation', () => {
       newLinkedList.insert('this is test 2');
       expect(newLinkedList.contains('this is test 3')).to.be.false;
     });
+
+    it('should be able to check if node is head', () => {
+      newLinkedList.insert('this is test 1');
+      expect(newLinkedList.isHead(newLinkedList.head)).to.be.true;
+      expect(newLinkedList.isHead(newLinkedList.tail)).to.be.true;
+    });
+
+    it('should be able to check if node is head', () => {
+      newLinkedList.insert('this is test 1');
+      expect(newLinkedList.isTail(newLinkedList.tail)).to.be.true;
+      expect(newLinkedList.isTail(newLinkedList.head)).to.be.true;
+    });
   });
 
   describe('hash table', () => {

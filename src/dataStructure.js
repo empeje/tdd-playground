@@ -135,7 +135,23 @@ class LinkedList {
   * @param {*} node - the node to remove
   * @return {*} value - the deleted node's value
   */
-  remove(value) {
+  remove(node) {
+    let beforeCurrentNode = null;
+    let currentNode = this.head;
+
+    while(currentNode.next && currentNode !== node) { // handling general case
+      beforeCurrentNode = currentNode;
+      currentNode = currentNode.next;
+    }
+
+    if(!beforeCurrentNode) {
+      this.head = currentNode.next;
+    } else if(!currentNode.next) {
+      this.tail = beforeCurrentNode;
+      this.tail.next = null;
+    } else if(beforeCurrentNode && currentNode) {
+      beforeCurrentNode.next = currentNode.next;
+    }
 
   }
 

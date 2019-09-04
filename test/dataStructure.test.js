@@ -215,8 +215,9 @@ describe('data structure implementation', () => {
     it('should be able to search value', () => {
       newLinkedList.insert('this is test 1');
       newLinkedList.insert('this is test 2');
-      expect(newLinkedList.search('this is test 1')[0].value)
-        .to.equal('this is test 1');
+      const nodes = newLinkedList.search('this is test 1');
+      expect(nodes[0].value).to.equal('this is test 1');
+      expect(nodes.length).to.equal(1);
     });
 
     it('should return empty array if search value does not exist', () => {
@@ -225,11 +226,39 @@ describe('data structure implementation', () => {
       expect(newLinkedList.search('this is test 3')).to.deep.equal([]);
     });
 
-    it('should be able to remove head', () => {});
+    it('should be able to remove head', () => {
+      newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
+      newLinkedList.insert('this is test 3');
+      const [node] = newLinkedList.search('this is test 1');
 
-    it('should be able to remove tail', () => {});
+      newLinkedList.remove(node);
+      expect(newLinkedList.head.value).to.equal('this is test 2');
+      expect(newLinkedList.head.next.value).to.equal('this is test 3');
+    });
 
-    it('should be able to remove node in the middle', () => {});
+    it('should be able to remove tail', () => {
+      newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
+      newLinkedList.insert('this is test 3');
+      const [node] = newLinkedList.search('this is test 3');
+
+      newLinkedList.remove(node);
+      expect(newLinkedList.tail.value).to.equal('this is test 2');
+      expect(newLinkedList.tail.next).to.be.null;
+    });
+
+    it('should be able to remove node in the middle', () => {
+      newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
+      newLinkedList.insert('this is test 3');
+      const [node] = newLinkedList.search('this is test 2');
+
+      newLinkedList.remove(node);
+      expect(newLinkedList.head.value).to.equal('this is test 1');
+      expect(newLinkedList.head.next).to.deep.equal(newLinkedList.tail);
+      expect(newLinkedList.tail.value).to.equal('this is test 3');
+    });
   });
 
   describe('hash table', () => {

@@ -200,14 +200,16 @@ describe('data structure implementation', () => {
 
     it('should be able to check if node is head', () => {
       newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
       expect(newLinkedList.isHead(newLinkedList.head)).to.be.true;
-      expect(newLinkedList.isHead(newLinkedList.tail)).to.be.true;
+      expect(newLinkedList.isHead(newLinkedList.tail)).to.be.false;
     });
 
-    it('should be able to check if node is head', () => {
+    it('should be able to check if node is tail', () => {
       newLinkedList.insert('this is test 1');
+      newLinkedList.insert('this is test 2');
       expect(newLinkedList.isTail(newLinkedList.tail)).to.be.true;
-      expect(newLinkedList.isTail(newLinkedList.head)).to.be.true;
+      expect(newLinkedList.isTail(newLinkedList.head)).to.be.false;
     });
 
     it('should be able to search value', () => {

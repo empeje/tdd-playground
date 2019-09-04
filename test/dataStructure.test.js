@@ -2,7 +2,8 @@ import { expect } from 'chai';
 import { describe, beforeEach } from 'mocha'
 import {
   Stack,
-  Queue
+  Queue,
+  LinkedList
 } from "../src/dataStructure";
 
 describe('data structure implementation', () => {
@@ -142,7 +143,37 @@ describe('data structure implementation', () => {
   });
 
   describe('linked list', () => {
+    let newLinkedList;
 
+    beforeEach(() => {
+      newLinkedList = new LinkedList();
+    });
+
+    it('should be able to insert to list', () => {
+      newLinkedList.insert('this is test');
+      expect(newLinkedList.head.value).to.equal('this is test');
+      expect(newLinkedList.tail.value).to.equal('this is test');
+    });
+
+    it('should be able to insert to list more than one', () => {
+      newLinkedList.insert('this is test 1');
+      expect(newLinkedList.head.value).to.equal('this is test 1');
+      expect(newLinkedList.tail.value).to.equal('this is test 1');
+
+      newLinkedList.insert('this is test 2');
+      expect(newLinkedList.head.value).to.equal('this is test 1');
+      expect(newLinkedList.head.next).to.deep.equal(newLinkedList.tail);
+      expect(newLinkedList.tail.value).to.equal('this is test 2');
+
+      newLinkedList.insert('this is test 3');
+      expect(newLinkedList.head.value).to.equal('this is test 1');
+      expect(newLinkedList.tail.value).to.equal('this is test 3');
+    });
+
+    it('should be able to initiate the list with initial value', () => {
+      const anotherNewLinkedList = new LinkedList('this is test');
+      expect(anotherNewLinkedList.head.value).to.equal('this is test');
+    });
   });
 
   describe('hash table', () => {

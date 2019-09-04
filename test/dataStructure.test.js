@@ -182,6 +182,7 @@ describe('data structure implementation', () => {
 
       newLinkedList.removeTail();
       expect(newLinkedList.tail.value).to.equal('this is test 2');
+      expect(newLinkedList.tail.next).to.be.null;
     });
   });
 

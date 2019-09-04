@@ -302,6 +302,17 @@ describe('data structure implementation', () => {
         .find(value => value[0][1] === testData[1].value)).to.deep.equal([[testData[1].key, testData[1].value]]);
     });
 
+    it('should not insert twice', () => {
+      newHashTable.insert(testData[0].key, testData[0].value);
+      newHashTable.insert(testData[0].key, testData[0].value);
+      newHashTable.insert(testData[1].key, testData[1].value);
+      newHashTable.insert(testData[2].key, testData[2].value);
+      const itemUnderTest = newHashTable._storage
+        .filter(value => value !== undefined)
+        .filter(value => value[0][1] === testData[0].value);
+      expect(itemUnderTest[0].length).to.equal(1);
+    });
+
     it('should be able to resize', () => {
       newHashTable.insert(testData[0].key, testData[0].value);
       newHashTable.insert(testData[1].key, testData[1].value);

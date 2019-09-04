@@ -229,6 +229,7 @@ class HashTable {
   insert(key, value, storage = this._storage) {
     const hash = this._hash(key);
     if(!storage[hash]) storage[hash] = [];
+    if(storage[hash].find(value => value[0] === key)) return;
     storage[hash].push([key, value])
   }
 

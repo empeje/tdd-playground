@@ -361,15 +361,9 @@ describe('data structure implementation', () => {
 
   describe('tree', () => {
     let newTree;
-    let consoleLogStub;
 
     beforeEach(() => {
       newTree = new Tree('Parent');
-      consoleLogStub = sinon.stub(console, 'log');
-    });
-
-    afterEach(() => {
-      consoleLogStub.restore();
     });
 
     it('should be able to insert child', () => {
@@ -399,17 +393,41 @@ describe('data structure implementation', () => {
       expect(newTree.children[0]).to.be.undefined;
     });
 
-    it('should be able to traverse tree', () => {
+    describe('traverse tree', () => {
+      let consoleLogStub;
+
+      beforeEach(() => {
+        newTree = new Tree('Parent');
+        consoleLogStub = sinon.stub(console, 'log');
+      });
+
+      afterEach(() => {
+        consoleLogStub.restore();
+      });
+
+      it('should be able to traverse tree', () => {
+        const child1 = newTree.insertChild('Child 1');
+        const grandchild1 = child1.insertChild('Grandchild 1');
+        grandchild1.insertChild('Great Grandchild 1');
+
+        const child2 = newTree.insertChild('Child 2');
+        const grandchild2 = child2.insertChild('Grandchild 2');
+        grandchild2.insertChild('Great Grandchild 2');
+
+        newTree.traverse();
+        expect(consoleLogStub).callCount(7);
+      });
+    });
+
+    it('should be able to get size', () => {
       const child1 = newTree.insertChild('Child 1');
       const grandchild1 = child1.insertChild('Grandchild 1');
       grandchild1.insertChild('Great Grandchild 1');
-
       const child2 = newTree.insertChild('Child 2');
       const grandchild2 = child2.insertChild('Grandchild 2');
       grandchild2.insertChild('Great Grandchild 2');
 
-      newTree.traverse();
-      expect(consoleLogStub).callCount(7);
+      expect(newTree.size()).to.equal(7);
     });
   })
 });

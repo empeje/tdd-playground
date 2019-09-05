@@ -313,7 +313,10 @@ class Tree {
     Tree.traverseTree(this, func);
   }
 
-  // Uses a Depth-First Traversal
+  size() {
+    return Tree.size(this);
+  }
+
   static traverseTree(tree, func) {
     func(tree.value);
     tree.children.forEach(child => {
@@ -322,6 +325,12 @@ class Tree {
   }
 
   static size(tree) {
+    const calculateChildSize = (tree) => {
+      const childrenSize = tree.children.reduce((accumulator, currentChild) => (calculateChildSize(currentChild) + accumulator), 0);
+      return tree.children.length + childrenSize;
+    };
+
+    return 1 + calculateChildSize(tree);
   }
 
   static find(tree, value) {

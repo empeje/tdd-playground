@@ -309,18 +309,25 @@ class Tree {
     this.children.splice(childIndex, 1);
   };
 
+  contains(searchValue) {
+    if (this.value === searchValue) return true;
+    return this.children.reduce((accumulator, child) => {
+      return accumulator || child.contains(searchValue);
+    }, false);
+  }
+
   traverse(func = console.log) {
-    Tree.traverseTree(this, func);
+    Tree.traverse(this, func);
   }
 
   size() {
     return Tree.size(this);
   }
 
-  static traverseTree(tree, func) {
+  static traverse(tree, func) {
     func(tree.value);
     tree.children.forEach(child => {
-      this.traverseTree(child, func);
+      this.traverse(child, func);
     })
   }
 
@@ -334,9 +341,6 @@ class Tree {
   }
 
   static find(tree, value) {
-  }
-
-  contains(searchValue) {
   }
 
   insert(parentTree, value) {

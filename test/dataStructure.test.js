@@ -429,5 +429,17 @@ describe('data structure implementation', () => {
 
       expect(newTree.size()).to.equal(7);
     });
+
+    it('should be able to search', () => {
+      const child1 = newTree.insertChild('Child 1');
+      const grandchild1 = child1.insertChild('Grandchild 1');
+      grandchild1.insertChild('Great Grandchild 1');
+      const child2 = newTree.insertChild('Child 2');
+      const grandchild2 = child2.insertChild('Grandchild 2');
+      grandchild2.insertChild('Great Grandchild 2');
+
+      expect(newTree.contains('Great Grandchild 2')).to.be.true;
+      expect(newTree.contains('Great Grandchild 5')).to.be.false;
+    });
   })
 });

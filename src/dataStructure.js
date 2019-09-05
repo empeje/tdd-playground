@@ -304,6 +304,11 @@ class Tree {
     return newChild;
   }
 
+  removeChild(childTree) {
+    const childIndex = this.children.findIndex(child => child === childTree);
+    this.children.splice(childIndex, 1);
+  };
+
   // Uses a Depth-First Traversal
   static traverse(tree, func = console.log) {
   }

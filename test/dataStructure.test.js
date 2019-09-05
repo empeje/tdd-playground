@@ -382,5 +382,11 @@ describe('data structure implementation', () => {
       expect(child.children[0].value).to.equal('Grandchild 1');
       expect(child.children[0].children).to.deep.equal([]);
     });
+
+    it('should be able to remove child', () => {
+      const child = newTree.insertChild('Child 1');
+      newTree.removeChild(child);
+      expect(newTree.children[0]).to.be.undefined;
+    });
   })
 });

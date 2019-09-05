@@ -371,5 +371,16 @@ describe('data structure implementation', () => {
       expect(newTree.children[0].value).to.equal('Child 1');
       expect(newTree.children[0].children).to.deep.equal([]);
     });
+
+    it('should be able to insert child of child', () => {
+      const child = newTree.insertChild('Child 1');
+      const grandchild = child.insertChild('Grandchild 1');
+
+      expect(grandchild.value).to.equal('Grandchild 1');
+      expect(grandchild.children).to.deep.equal([]);
+
+      expect(child.children[0].value).to.equal('Grandchild 1');
+      expect(child.children[0].children).to.deep.equal([]);
+    });
   })
 });

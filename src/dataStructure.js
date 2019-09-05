@@ -350,15 +350,6 @@ class Tree {
       return accumulator.concat(this.find(child, value));
     }, []);
   }
-
-  insert(parentTree, value) {
-  }
-
-  remove(value) {
-  }
-
-  reorder(node1, node2) {
-  }
 }
 
 export {

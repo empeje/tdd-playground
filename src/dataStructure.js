@@ -315,8 +315,8 @@ class Tree {
 
   // Uses a Depth-First Traversal
   static traverseTree(tree, func) {
+    func(tree.value);
     tree.children.forEach(child => {
-      func(child.value);
       this.traverseTree(child, func);
     })
   }

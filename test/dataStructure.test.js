@@ -409,7 +409,7 @@ describe('data structure implementation', () => {
       grandchild2.insertChild('Great Grandchild 2');
 
       newTree.traverse();
-      expect(consoleLogStub).callCount(6);
+      expect(consoleLogStub).callCount(7);
     });
   })
 });

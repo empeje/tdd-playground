@@ -430,7 +430,7 @@ describe('data structure implementation', () => {
       expect(newTree.size()).to.equal(7);
     });
 
-    it('should be able to search', () => {
+    it('should be able to search and return if tree containing a value or not', () => {
       const child1 = newTree.insertChild('Child 1');
       const grandchild1 = child1.insertChild('Grandchild 1');
       grandchild1.insertChild('Great Grandchild 1');
@@ -440,6 +440,18 @@ describe('data structure implementation', () => {
 
       expect(newTree.contains('Great Grandchild 2')).to.be.true;
       expect(newTree.contains('Great Grandchild 5')).to.be.false;
+    });
+
+    it('should be able to search and return all result when found', () => {
+      const child1 = newTree.insertChild('Child 1');
+      const grandchild1 = child1.insertChild('Grandchild 1');
+      grandchild1.insertChild('Great Grandchild 1');
+      const child2 = newTree.insertChild('Child 2');
+      const grandchild2 = child2.insertChild('Grandchild 2');
+      const greatGrandchild2 = grandchild2.insertChild('Great Grandchild 2');
+
+      expect(newTree.find('Great Grandchild 2')).to.deep.equal([greatGrandchild2]);
+      expect(newTree.find('Great Grandchild 5')).to.deep.equal([]);
     });
   })
 });

@@ -316,6 +316,10 @@ class Tree {
     }, false);
   }
 
+  find(searchValue) {
+    return Tree.find(this, searchValue);
+  }
+
   traverse(func = console.log) {
     Tree.traverse(this, func);
   }
@@ -341,6 +345,10 @@ class Tree {
   }
 
   static find(tree, value) {
+    if (tree.value === value) return [tree];
+    return tree.children.reduce((accumulator, child) => {
+      return accumulator.concat(this.find(child, value));
+    }, []);
   }
 
   insert(parentTree, value) {

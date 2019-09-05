@@ -1,5 +1,7 @@
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
 import { describe, beforeEach } from 'mocha'
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 import {
   Stack,
   Queue,
@@ -7,6 +9,8 @@ import {
   HashTable,
   Tree
 } from "../src/dataStructure";
+
+chai.use(sinonChai);
 
 describe('data structure implementation', () => {
   describe('stack', () => {
@@ -357,9 +361,15 @@ describe('data structure implementation', () => {
 
   describe('tree', () => {
     let newTree;
+    let consoleLogStub;
 
     beforeEach(() => {
       newTree = new Tree('Parent');
+      consoleLogStub = sinon.stub(console, 'log');
+    });
+
+    afterEach(() => {
+      consoleLogStub.restore();
     });
 
     it('should be able to insert child', () => {
@@ -387,6 +397,19 @@ describe('data structure implementation', () => {
       const child = newTree.insertChild('Child 1');
       newTree.removeChild(child);
       expect(newTree.children[0]).to.be.undefined;
+    });
+
+    it('should be able to traverse tree', () => {
+      const child1 = newTree.insertChild('Child 1');
+      const grandchild1 = child1.insertChild('Grandchild 1');
+      grandchild1.insertChild('Great Grandchild 1');
+
+      const child2 = newTree.insertChild('Child 2');
+      const grandchild2 = child2.insertChild('Grandchild 2');
+      grandchild2.insertChild('Great Grandchild 2');
+
+      newTree.traverse();
+      expect(consoleLogStub).to.have.callCount(6);
     });
   })
 });

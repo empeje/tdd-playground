@@ -309,8 +309,16 @@ class Tree {
     this.children.splice(childIndex, 1);
   };
 
+  traverse(func = console.log) {
+    Tree.traverseTree(this, func);
+  }
+
   // Uses a Depth-First Traversal
-  static traverse(tree, func = console.log) {
+  static traverseTree(tree, func) {
+    tree.children.forEach(child => {
+      func(child.value);
+      this.traverseTree(child, func);
+    })
   }
 
   static size(tree) {

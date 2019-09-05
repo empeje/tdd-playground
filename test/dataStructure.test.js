@@ -4,7 +4,8 @@ import {
   Stack,
   Queue,
   LinkedList,
-  HashTable
+  HashTable,
+  Tree
 } from "../src/dataStructure";
 
 describe('data structure implementation', () => {
@@ -353,4 +354,22 @@ describe('data structure implementation', () => {
       expect(newHashTable.retrieve(testData[0].key)).to.equal(testData[0].value);
     });
   });
+
+  describe('tree', () => {
+    let newTree;
+
+    beforeEach(() => {
+      newTree = new Tree('Parent');
+    });
+
+    it('should be able to insert child', () => {
+      const child = newTree.insertChild('Child 1');
+
+      expect(child.value).to.equal('Child 1');
+      expect(child.children).to.deep.equal([]);
+
+      expect(newTree.children[0].value).to.equal('Child 1');
+      expect(newTree.children[0].children).to.deep.equal([]);
+    });
+  })
 });

@@ -292,9 +292,45 @@ class HashTable {
   }
 }
 
+class Tree {
+  constructor(value) {
+    this.value = value;
+    this.children = [];
+  }
+
+  insertChild(value) {
+    const newChild = new Tree(value);
+    this.children.push(newChild);
+    return newChild;
+  }
+
+  // Uses a Depth-First Traversal
+  static traverse(tree, func = console.log) {
+  }
+
+  static size(tree) {
+  }
+
+  static find(tree, value) {
+  }
+
+  contains(searchValue) {
+  }
+
+  insert(parentTree, value) {
+  }
+
+  remove(value) {
+  }
+
+  reorder(node1, node2) {
+  }
+}
+
 export {
   Stack,
   Queue,
   LinkedList,
-  HashTable
+  HashTable,
+  Tree
 }

@@ -427,11 +427,79 @@ class BinaryTree {
   }
 }
 
+/**
+ * Adjacency matrix graph implementation
+ */
+class AdjacencyMatrixGraph {
+  constructor() {
+    this.nodes = [];
+    this.adjList = {};
+  }
+
+  addNode(node) {
+  }
+
+  addEdge(node1, node2) {
+  }
+
+  removeNode(node) {
+  }
+
+  removeEdge(node1, node2) {
+  }
+
+  depthFirstTraversal(startingNode, func = console.log) {
+  }
+
+  breadthFirstTraversal(startingNode, func = console.log) {
+  }
+}
+
+/**
+ * Adjacency list graph implementation
+ */
+class Graph {
+  constructor() {
+    this.nodes = [];
+    this.adjList = {};
+    this.size = 0;
+  }
+
+  addNode(node) {
+    this.nodes.push(node);
+    this.adjList[this.size] = [];
+    this.size++;
+  }
+
+  addEdge(node1, node2) {
+    const node1Index = this.nodes.indexOf(node1);
+    const node2Index = this.nodes.indexOf(node2);
+
+    this.adjList[node1Index].push(node2);
+    this.adjList[node2Index].push(node1);
+  }
+
+  removeNode(node) {
+  }
+
+  removeEdge(node1, node2) {
+
+  }
+
+  depthFirstTraversal(startingNode, func = console.log) {
+  }
+
+  breadthFirstTraversal(startingNode, func = console.log) {
+  }
+}
+
 export {
   Stack,
   Queue,
   LinkedList,
   HashTable,
   Tree,
-  BinaryTree
+  BinaryTree,
+  AdjacencyMatrixGraph,
+  Graph
 }

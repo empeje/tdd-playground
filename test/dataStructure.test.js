@@ -8,7 +8,9 @@ import {
   LinkedList,
   HashTable,
   Tree,
-  BinaryTree
+  BinaryTree,
+  AdjacencyMatrixGraph,
+  Graph
 } from "../src/dataStructure";
 
 chai.use(sinonChai);
@@ -542,5 +544,45 @@ describe('data structure implementation', () => {
 
       expect(newBinaryTree.countLeaves()).to.equal(2);
     });
+  });
+
+  describe('adjacency matrix graph', () => {
+
+  });
+
+  describe('graph', () => {
+    let newGraph;
+
+    beforeEach(() => {
+      newGraph = new Graph();
+    });
+
+    it('should be able to insert vertices', () => {
+      const node = {value: 'Toast'};
+      newGraph.addNode(node);
+      expect(newGraph.size).to.equal(1);
+      expect(newGraph.adjList).to.deep.equal({0: []});
+      expect(newGraph.nodes).to.deep.equal([node]);
+    });
+
+    it('should be able to insert vertices more than one', () => {
+      const node1 = {value: 'Toast'};
+      const node2 = {value: 'Nasi Perang'};
+      newGraph.addNode(node1);
+      newGraph.addNode(node2);
+      expect(newGraph.size).to.equal(2);
+      expect(newGraph.nodes).to.deep.equal([node1, node2]);
+    });
+
+    it('should be able to add edges', () => {
+      const node1 = {value: 'Toast'};
+      const node2 = {value: 'Nasi Perang'};
+      newGraph.addNode(node1);
+      newGraph.addNode(node2);
+
+      newGraph.addEdge(node1, node2);
+      expect(newGraph.adjList[newGraph.nodes.indexOf(node1)]).to.include(node2);
+      expect(newGraph.adjList[newGraph.nodes.indexOf(node2)]).to.include(node1);
+    })
   });
 });

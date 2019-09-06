@@ -518,5 +518,18 @@ describe('data structure implementation', () => {
         expect(consoleLogStub).callCount(7);
       });
     });
+
+    it('should be able to check if tree contains a value', () => {
+      const newChild1a = newBinaryTree.insertChild('Child 1a');
+      const newChild1b = newBinaryTree.insertChild('Child 1b');
+      const newChild2a = newChild1a.insertChild('Child 2a');
+      const newChild2b = newChild1b.insertChild('Child 2b');
+      newChild2a.insertChild('Child 3a');
+      newChild2b.insertChild('Child 3b');
+
+      expect(newBinaryTree.contains('Parent')).to.be.true;
+      expect(newBinaryTree.contains('Child 3b')).to.be.true;
+      expect(newBinaryTree.contains('Child 4b')).to.be.false;
+    });
   });
 });

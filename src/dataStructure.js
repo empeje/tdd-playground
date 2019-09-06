@@ -383,6 +383,10 @@ class BinaryTree {
     BinaryTree.postOrderTraversal(this, func);
   }
 
+  contains(value) {
+    return BinaryTree.contains(this, value);
+  }
+
   // left, root, right
   static inOrderTraversal(tree, func) {
     if (!tree) return;
@@ -405,6 +409,11 @@ class BinaryTree {
     this.postOrderTraversal(tree.left, func);
     this.postOrderTraversal(tree.right, func);
     func(tree.value);
+  }
+
+  static contains(tree, value) {
+    if (!tree) return false;
+    return tree.value === value || this.contains(tree.left, value) || this.contains(tree.right, value);
   }
 }
 

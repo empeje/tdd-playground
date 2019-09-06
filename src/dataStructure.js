@@ -463,11 +463,12 @@ class Graph {
     this.nodes = [];
     this.adjList = {};
     this.size = 0;
+    this.head = 0;
   }
 
   addNode(node) {
     this.nodes.push(node);
-    this.adjList[this.size] = [];
+    this.adjList[this.size - this.head] = [];
     this.size++;
   }
 
@@ -480,6 +481,20 @@ class Graph {
   }
 
   removeNode(node) {
+    const nodeIndex = this.nodes.indexOf(node);
+    const relationshipsToBeDeleted = this.adjList[nodeIndex];
+
+    relationshipsToBeDeleted.forEach(currentNode => {
+      const nodeIndex = this.nodes.indexOf(currentNode);
+      const edgeIndex = this.adjList[nodeIndex].indexOf(node);
+      this.adjList[nodeIndex].splice(edgeIndex, 1);
+    });
+
+    delete this.nodes.splice(nodeIndex, 1);
+    delete this.adjList[nodeIndex];
+
+    this.size--;
+    this.head++;
   }
 
   removeEdge(node1, node2) {

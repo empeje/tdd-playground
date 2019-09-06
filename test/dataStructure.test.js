@@ -547,7 +547,21 @@ describe('data structure implementation', () => {
   });
 
   describe('adjacency matrix graph', () => {
+    let newAdjacencyMatrixGraph;
 
+    beforeEach(() => {
+      newAdjacencyMatrixGraph = new AdjacencyMatrixGraph();
+    });
+
+    it('should be able to insert vertices', () => {});
+
+    it('should be able to insert vertices more than one', () => {});
+
+    it('should be able to add edges', () => {});
+
+    it('should be able to delete edges', () => {});
+
+    it('should be able to delete vertices', () => {});
   });
 
   describe('graph', () => {

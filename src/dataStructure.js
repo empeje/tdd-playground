@@ -421,10 +421,9 @@ class BinaryTree {
   }
 
   static countLeaves(tree) {
+    if (!tree) return 0;
     if (!tree.left && !tree.right) return 1;
-    const leftCount = tree.left ? this.countLeaves(tree.left) : 0;
-    const rightCount = tree.right ? this.countLeaves(tree.right) : 0;
-    return leftCount + rightCount;
+    return this.countLeaves(tree.left) + this.countLeaves(tree.right);
   }
 }
 

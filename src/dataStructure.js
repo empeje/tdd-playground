@@ -352,10 +352,51 @@ class Tree {
   }
 }
 
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+
+  insertChild(value) {
+    const newChild = new BinaryTree(value);
+
+    if(!this.left) {
+      this.left = newChild;
+    } else if(!this.right) {
+      this.right = newChild;
+    }
+
+    return newChild;
+  }
+
+  inOrderTraversal(func = console.log) {
+    BinaryTree.inOrderTraversal(this, func)
+  }
+
+  // left, root, right
+  static inOrderTraversal(tree, func) {
+    if (!tree) return;
+    this.inOrderTraversal(tree.left, func);
+    func(tree.value);
+    this.inOrderTraversal(tree.right, func);
+  }
+
+  // root, left, right
+  preOrderTraversal(func = console.log) {
+  }
+
+  // left, right, root
+  postOrderTraversal(func = console.log) {
+  }
+}
+
 export {
   Stack,
   Queue,
   LinkedList,
   HashTable,
-  Tree
+  Tree,
+  BinaryTree
 }

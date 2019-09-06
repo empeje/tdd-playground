@@ -7,7 +7,8 @@ import {
   Queue,
   LinkedList,
   HashTable,
-  Tree
+  Tree,
+  BinaryTree
 } from "../src/dataStructure";
 
 chai.use(sinonChai);
@@ -453,5 +454,45 @@ describe('data structure implementation', () => {
       expect(newTree.find('Great Grandchild 2')).to.deep.equal([greatGrandchild2]);
       expect(newTree.find('Great Grandchild 5')).to.deep.equal([]);
     });
-  })
+  });
+
+  describe('binary tree', () => {
+    let newBinaryTree;
+
+    beforeEach(() => {
+      newBinaryTree = new BinaryTree('Parent');
+    });
+
+    it('should be able to insert node', () => {
+      newBinaryTree.insertChild('Child Left');
+      newBinaryTree.insertChild('Child Right');
+
+      expect(newBinaryTree.left.value).to.equal('Child Left');
+      expect(newBinaryTree.right.value).to.equal('Child Right');
+    });
+
+    describe('tree traversing', () =>{
+      let consoleLogStub;
+
+      beforeEach(() => {
+        consoleLogStub = sinon.stub(console, 'log');
+      });
+
+      afterEach(() => {
+        consoleLogStub.restore();
+      });
+
+      it('should be able to traverse tree', () => {
+        const newChild1a = newBinaryTree.insertChild('Child 1a');
+        const newChild1b = newBinaryTree.insertChild('Child 1b');
+        const newChild2a = newChild1a.insertChild('Child 2a');
+        const newChild2b = newChild1b.insertChild('Child 2b');
+        newChild2a.insertChild('Child 3a');
+        newChild2b.insertChild('Child 3b');
+
+        newBinaryTree.inOrderTraversal();
+        expect(consoleLogStub).callCount(7);
+      });
+    });
+  });
 });

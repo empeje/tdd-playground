@@ -372,7 +372,15 @@ class BinaryTree {
   }
 
   inOrderTraversal(func = console.log) {
-    BinaryTree.inOrderTraversal(this, func)
+    BinaryTree.inOrderTraversal(this, func);
+  }
+
+  preOrderTraversal(func = console.log) {
+    BinaryTree.preOrderTraversal(this, func);
+  };
+
+  postOrderTraversal(func = console.log) {
+    BinaryTree.postOrderTraversal(this, func);
   }
 
   // left, root, right
@@ -384,11 +392,19 @@ class BinaryTree {
   }
 
   // root, left, right
-  preOrderTraversal(func = console.log) {
+  static preOrderTraversal(tree, func = console.log) {
+    if (!tree) return;
+    func(tree.value);
+    this.preOrderTraversal(tree.left, func);
+    this.preOrderTraversal(tree.right, func);
   }
 
   // left, right, root
-  postOrderTraversal(func = console.log) {
+  static postOrderTraversal(tree, func = console.log) {
+    if (!tree) return;
+    this.postOrderTraversal(tree.left, func);
+    this.postOrderTraversal(tree.right, func);
+    func(tree.value);
   }
 }
 

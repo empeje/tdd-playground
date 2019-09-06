@@ -482,7 +482,7 @@ describe('data structure implementation', () => {
         consoleLogStub.restore();
       });
 
-      it('should be able to traverse tree', () => {
+      it('should be able to traverse tree in order', () => {
         const newChild1a = newBinaryTree.insertChild('Child 1a');
         const newChild1b = newBinaryTree.insertChild('Child 1b');
         const newChild2a = newChild1a.insertChild('Child 2a');
@@ -491,6 +491,30 @@ describe('data structure implementation', () => {
         newChild2b.insertChild('Child 3b');
 
         newBinaryTree.inOrderTraversal();
+        expect(consoleLogStub).callCount(7);
+      });
+
+      it('should be able to traverse tree in pre order', () => {
+        const newChild1a = newBinaryTree.insertChild('Child 1a');
+        const newChild1b = newBinaryTree.insertChild('Child 1b');
+        const newChild2a = newChild1a.insertChild('Child 2a');
+        const newChild2b = newChild1b.insertChild('Child 2b');
+        newChild2a.insertChild('Child 3a');
+        newChild2b.insertChild('Child 3b');
+
+        newBinaryTree.preOrderTraversal();
+        expect(consoleLogStub).callCount(7);
+      });
+
+      it('should be able to traverse tree in post order', () => {
+        const newChild1a = newBinaryTree.insertChild('Child 1a');
+        const newChild1b = newBinaryTree.insertChild('Child 1b');
+        const newChild2a = newChild1a.insertChild('Child 2a');
+        const newChild2b = newChild1b.insertChild('Child 2b');
+        newChild2a.insertChild('Child 3a');
+        newChild2b.insertChild('Child 3b');
+
+        newBinaryTree.postOrderTraversal();
         expect(consoleLogStub).callCount(7);
       });
     });

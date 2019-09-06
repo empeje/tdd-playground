@@ -387,6 +387,10 @@ class BinaryTree {
     return BinaryTree.contains(this, value);
   }
 
+  countLeaves() {
+    return BinaryTree.countLeaves(this);
+  };
+
   // left, root, right
   static inOrderTraversal(tree, func) {
     if (!tree) return;
@@ -414,6 +418,13 @@ class BinaryTree {
   static contains(tree, value) {
     if (!tree) return false;
     return tree.value === value || this.contains(tree.left, value) || this.contains(tree.right, value);
+  }
+
+  static countLeaves(tree) {
+    if (!tree.left && !tree.right) return 1;
+    const leftCount = tree.left ? this.countLeaves(tree.left) : 0;
+    const rightCount = tree.right ? this.countLeaves(tree.right) : 0;
+    return leftCount + rightCount;
   }
 }
 

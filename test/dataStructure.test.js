@@ -531,5 +531,16 @@ describe('data structure implementation', () => {
       expect(newBinaryTree.contains('Child 3b')).to.be.true;
       expect(newBinaryTree.contains('Child 4b')).to.be.false;
     });
+
+    it('should be able to count leaves in a tree', () => {
+      const newChild1a = newBinaryTree.insertChild('Child 1a');
+      const newChild1b = newBinaryTree.insertChild('Child 1b');
+      const newChild2a = newChild1a.insertChild('Child 2a');
+      const newChild2b = newChild1b.insertChild('Child 2b');
+      newChild2a.insertChild('Child 3a');
+      newChild2b.insertChild('Child 3b');
+
+      expect(newBinaryTree.countLeaves()).to.equal(2);
+    });
   });
 });

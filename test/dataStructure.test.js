@@ -583,6 +583,18 @@ describe('data structure implementation', () => {
       newGraph.addEdge(node1, node2);
       expect(newGraph.adjList[newGraph.nodes.indexOf(node1)]).to.include(node2);
       expect(newGraph.adjList[newGraph.nodes.indexOf(node2)]).to.include(node1);
-    })
+    });
+
+    it('should be able to delete edges', () => {
+      const node1 = {value: 'Toast'};
+      const node2 = {value: 'Nasi Perang'};
+      newGraph.addNode(node1);
+      newGraph.addNode(node2);
+
+      newGraph.addEdge(node1, node2);
+      newGraph.removeEdge(node1, node2);
+      expect(newGraph.adjList[newGraph.nodes.indexOf(node1)]).to.not.include(node2);
+      expect(newGraph.adjList[newGraph.nodes.indexOf(node2)]).to.not.include(node1);
+    });
   });
 });

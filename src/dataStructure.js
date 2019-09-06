@@ -483,7 +483,14 @@ class Graph {
   }
 
   removeEdge(node1, node2) {
+    const node1Index = this.nodes.indexOf(node1);
+    const node2Index = this.nodes.indexOf(node2);
 
+    const node2adjIndex = this.adjList[node1Index].indexOf(node2);
+    const node1adjIndex = this.adjList[node2Index].indexOf(node1);
+
+    this.adjList[node1Index].splice(node2adjIndex, 1);
+    this.adjList[node2Index].splice(node1adjIndex, 1);
   }
 
   depthFirstTraversal(startingNode, func = console.log) {

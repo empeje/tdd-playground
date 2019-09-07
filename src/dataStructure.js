@@ -499,22 +499,22 @@ class Graph {
     const visitedNode = {};
     const stack = new Stack();
 
-    const recurse = node => {
+    stack.push(startingNode);
+    visitedNode[startingNode.value] = true;
+
+    while(stack.size()) {
       // console.log({stack: stack._storage}); // you can uncomment for debugging and see how it works
-      if(!visitedNode[node.value]) {
-        stack.push(node.value);
-        func(stack.peek());
-        visitedNode[stack.peek()] = true;
+      const current = stack.pop();
+      const neighbors = this.adjList[current.value];
+      func(current.value);
 
-        this.adjList[stack.peek()].edges.forEach(edgeNode => {
-          if(edgeNode.value !== node.value) recurse(edgeNode);
-        });
-
-        stack.pop();
-      }
-    };
-
-    recurse(startingNode);
+      neighbors.edges.forEach(neighbor => {
+        if(!visitedNode[neighbor.value]){
+          stack.push(neighbor);
+          visitedNode[neighbor.value] = true;
+        }
+      });
+    }
   }
 
   breadthFirstTraversal(startingNode, func = console.log) {

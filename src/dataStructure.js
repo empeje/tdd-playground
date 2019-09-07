@@ -518,6 +518,25 @@ class Graph {
   }
 
   breadthFirstTraversal(startingNode, func = console.log) {
+    const visitedNode = {};
+    const queue = new Queue();
+
+    queue.enqueue(startingNode);
+    visitedNode[startingNode.value] = true;
+
+    while(queue.size()) {
+      // console.log({queue: queue._storage}); // you can uncomment for debugging and see how it works
+      const current = queue.dequeue();
+      const neighbors = this.adjList[current.value];
+      func(current.value);
+
+      neighbors.edges.forEach(neighbor => {
+        if(!visitedNode[neighbor.value]){
+          queue.enqueue(neighbor);
+          visitedNode[neighbor.value] = true;
+        }
+      });
+    }
   }
 }
 

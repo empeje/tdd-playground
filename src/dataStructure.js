@@ -460,52 +460,39 @@ class AdjacencyMatrixGraph {
  */
 class Graph {
   constructor() {
-    this.nodes = [];
     this.adjList = {};
     this.size = 0;
     this.head = 0;
   }
 
-  addNode(node) {
-    this.nodes.push(node);
-    this.adjList[this.size - this.head] = [];
-    this.size++;
+  addNode(node) { // O(1)
+    this.adjList[node.value] = {
+      node: node,
+      edges: []
+    };
   }
 
-  addEdge(node1, node2) {
-    const node1Index = this.nodes.indexOf(node1);
-    const node2Index = this.nodes.indexOf(node2);
-
-    this.adjList[node1Index].push(node2);
-    this.adjList[node2Index].push(node1);
+  addEdge(node1, node2) { // O(1)
+    this.adjList[node1.value].edges.push(node2);
+    this.adjList[node2.value].edges.push(node1);
   }
 
-  removeNode(node) {
-    const nodeIndex = this.nodes.indexOf(node);
-    const relationshipsToBeDeleted = this.adjList[nodeIndex];
+  removeNode(node) { // O(n^2)
+    const nodeRef = this.adjList[node.value];
+    delete this.adjList[node.value];
 
-    relationshipsToBeDeleted.forEach(currentNode => {
-      const nodeIndex = this.nodes.indexOf(currentNode);
-      const edgeIndex = this.adjList[nodeIndex].indexOf(node);
-      this.adjList[nodeIndex].splice(edgeIndex, 1);
+    nodeRef.edges.forEach(edgeNode => {
+      const index = this.adjList[edgeNode.value].edges.indexOf(node);
+      this.adjList[edgeNode.value].edges.splice(index, 1);
     });
-
-    delete this.nodes.splice(nodeIndex, 1);
-    delete this.adjList[nodeIndex];
-
-    this.size--;
-    this.head++;
   }
 
-  removeEdge(node1, node2) {
-    const node1Index = this.nodes.indexOf(node1);
-    const node2Index = this.nodes.indexOf(node2);
+  removeEdge(node1, node2) { // O(n)
+    const node1EdgeIndex = this.adjList[node1.value].edges.indexOf(node1);
+    const node2EdgeIndex = this.adjList[node2.value].edges.indexOf(node2);
 
-    const node2adjIndex = this.adjList[node1Index].indexOf(node2);
-    const node1adjIndex = this.adjList[node2Index].indexOf(node1);
-
-    this.adjList[node1Index].splice(node2adjIndex, 1);
-    this.adjList[node2Index].splice(node1adjIndex, 1);
+    this.adjList[node1.value].edges.splice(node1EdgeIndex, 1);
+    this.adjList[node2.value].edges.splice(node2EdgeIndex, 1);
   }
 
   depthFirstTraversal(startingNode, func = console.log) {

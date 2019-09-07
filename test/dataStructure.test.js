@@ -574,9 +574,8 @@ describe('data structure implementation', () => {
     it('should be able to insert vertices', () => {
       const node = {value: 'Toast'};
       newGraph.addNode(node);
-      expect(newGraph.size).to.equal(1);
-      expect(newGraph.adjList).to.deep.equal({0: []});
-      expect(newGraph.nodes).to.deep.equal([node]);
+      expect(newGraph.adjList[node.value].node).to.deep.equal(node);
+      expect(newGraph.adjList[node.value].edges).to.deep.equal([]);
     });
 
     it('should be able to insert vertices more than one', () => {
@@ -584,8 +583,12 @@ describe('data structure implementation', () => {
       const node2 = {value: 'Nasi Perang'};
       newGraph.addNode(node1);
       newGraph.addNode(node2);
-      expect(newGraph.size).to.equal(2);
-      expect(newGraph.nodes).to.deep.equal([node1, node2]);
+
+      expect(newGraph.adjList[node1.value].node).to.deep.equal(node1);
+      expect(newGraph.adjList[node1.value].edges).to.deep.equal([]);
+
+      expect(newGraph.adjList[node2.value].node).to.deep.equal(node2);
+      expect(newGraph.adjList[node2.value].edges).to.deep.equal([]);
     });
 
     it('should be able to add edges', () => {
@@ -595,8 +598,8 @@ describe('data structure implementation', () => {
       newGraph.addNode(node2);
 
       newGraph.addEdge(node1, node2);
-      expect(newGraph.adjList[newGraph.nodes.indexOf(node1)]).to.include(node2);
-      expect(newGraph.adjList[newGraph.nodes.indexOf(node2)]).to.include(node1);
+      expect(newGraph.adjList[node1.value].edges).to.deep.equal([node2]);
+      expect(newGraph.adjList[node2.value].edges).to.deep.equal([node1]);
     });
 
     it('should be able to delete edges', () => {
@@ -607,8 +610,8 @@ describe('data structure implementation', () => {
 
       newGraph.addEdge(node1, node2);
       newGraph.removeEdge(node1, node2);
-      expect(newGraph.adjList[newGraph.nodes.indexOf(node1)]).to.not.include(node2);
-      expect(newGraph.adjList[newGraph.nodes.indexOf(node2)]).to.not.include(node1);
+      expect(newGraph.adjList[node1.value].edges).to.deep.equal([]);
+      expect(newGraph.adjList[node2.value].edges).to.deep.equal([]);
     });
 
     it('should be able to delete vertices', () => {
@@ -620,10 +623,8 @@ describe('data structure implementation', () => {
       newGraph.addEdge(node1, node2);
       newGraph.removeNode(node1);
 
-      expect(newGraph.size).to.equal(1);
-      expect(newGraph.adjList[newGraph.nodes.indexOf(node1)]).to.be.undefined;
-      expect(newGraph.adjList[newGraph.nodes.indexOf(node2) + newGraph.head]).to.deep.equal([]);
-      expect(newGraph.nodes).to.deep.equal([node2]);
+      expect(newGraph.adjList[node1.value]).to.be.undefined;
+      expect(newGraph.adjList[node2.value].edges).to.not.include(node1);
     });
   });
 });

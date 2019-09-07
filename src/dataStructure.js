@@ -495,7 +495,26 @@ class Graph {
     this.adjList[node2.value].edges.splice(node2EdgeIndex, 1);
   }
 
-  depthFirstTraversal(startingNode, func = console.log) {
+  depthFirstTraversal(startingNode, func = console.log) { // using stack, theoretically O(n)
+    const visitedNode = {};
+    const stack = new Stack();
+
+    const recurse = node => {
+      // console.log({stack: stack._storage}); // you can uncomment for debugging and see how it works
+      if(!visitedNode[node.value]) {
+        stack.push(node.value);
+        func(stack.peek());
+        visitedNode[stack.peek()] = true;
+
+        this.adjList[stack.peek()].edges.forEach(edgeNode => {
+          if(edgeNode.value !== node.value) recurse(edgeNode);
+        });
+
+        stack.pop();
+      }
+    };
+
+    recurse(startingNode);
   }
 
   breadthFirstTraversal(startingNode, func = console.log) {

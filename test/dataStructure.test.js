@@ -626,5 +626,38 @@ describe('data structure implementation', () => {
       expect(newGraph.adjList[node1.value]).to.be.undefined;
       expect(newGraph.adjList[node2.value].edges).to.not.include(node1);
     });
+
+    describe('should be able to traverse', () => {
+      let consoleLogStub;
+
+      beforeEach(() => {
+        consoleLogStub = sinon.stub(console, 'log');
+      });
+
+      afterEach(() => {
+        consoleLogStub.restore();
+      });
+
+      it('should be able to do depth first search', () => {
+        const node1 = {value: 'Toast'};
+        const node2 = {value: 'Nasi Perang'};
+        const node3 = {value: 'Nasi Goreng'};
+        const node4 = {value: 'Indomie'};
+
+        newGraph.addNode(node1);
+        newGraph.addNode(node2);
+        newGraph.addNode(node3);
+        newGraph.addNode(node4);
+
+        newGraph.addEdge(node1, node2);
+        newGraph.addEdge(node2, node3);
+        newGraph.addEdge(node3, node4);
+        newGraph.addEdge(node3, node1);
+        newGraph.addEdge(node4, node1);
+
+        newGraph.depthFirstTraversal(node1);
+        expect(consoleLogStub).callCount(4);
+      });
+    });
   });
 });

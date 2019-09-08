@@ -558,7 +558,7 @@ class BinarySearchTree {
         this.left.root = this;
         return newChild;
       } else {
-        this.left.insert(value);
+        return this.left.insert(value);
       }
     } else if(this.value < value) {
       if(!this.right) {
@@ -566,7 +566,7 @@ class BinarySearchTree {
         this.right.root = this;
         return newChild;
       } else {
-        this.right.insert(value);
+        return this.right.insert(value);
       }
     }
   }
@@ -577,17 +577,76 @@ class BinarySearchTree {
     if(this.value < value) return this.right.contains(value);
   }
 
+  find(value) {
+    if (value === this.value) return this;
+    if(value < this.value) return this.left.find(value);
+    if(this.value < value) return this.right.find(value);
+  }
+
   min() {
-    if(!this.left && !this.right) return this.value;
+    if(!this.left && !this.right) return this;
     return this.left.min();
   }
 
   max() {
-    if(!this.left && !this.right) return this.value;
+    if(!this.left && !this.right) return this;
     return this.right.max();
   }
 
+  isRoot() {
+    return this.root === null;
+  }
+
+  childCount() {
+   let count = 0;
+   if(this.left) count++;
+   if(this.right) count++;
+   return count;
+  }
+
+  /**
+   * Removing node
+   * References: http://www.algolist.net/Data_structures/Binary_search_tree/Removal
+   * @param value
+   * @return {number}
+   */
   remove(value) {
+    const replaceValueOnRoot = (oldRef, newRef) => {
+      if(oldRef.root.left === oldRef) oldRef.root.left = newRef;
+      if(oldRef.root.right === oldRef) oldRef.root.right = newRef;
+    };
+
+    const copyNodeRef = (source, target) => {
+      target.root = source.root;
+      target.right = source.right;
+      target.left = source.left;
+    };
+
+    const changeRoot = (oldRoot, newRoot) => {
+      oldRoot.left.root = newRoot;
+      oldRoot.right.root = newRoot;
+    };
+
+    const toBeRemoved = this.find(value);
+    if(toBeRemoved.isRoot()) return -1;
+
+    if(toBeRemoved.childCount() === 0) {
+      replaceValueOnRoot(toBeRemoved, null);
+    }
+
+    if(toBeRemoved.childCount() === 1) {
+      const replacement = toBeRemoved.left || toBeRemoved.right;
+      replaceValueOnRoot(toBeRemoved, replacement);
+      copyNodeRef(toBeRemoved, replacement);
+    }
+
+    if(toBeRemoved.childCount() === 2) {
+      const replacement = toBeRemoved.right.min();
+      replaceValueOnRoot(replacement, null);
+      replaceValueOnRoot(toBeRemoved, replacement);
+      copyNodeRef(toBeRemoved, replacement);
+      changeRoot(toBeRemoved, replacement);
+    }
   }
 
   // left, root, right

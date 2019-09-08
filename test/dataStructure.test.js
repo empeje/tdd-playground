@@ -730,7 +730,7 @@ describe('data structure implementation', () => {
       newBinarySearchTree.insert(7);
       newBinarySearchTree.insert(8);
       newBinarySearchTree.insert(1);
-      expect(newBinarySearchTree.min()).to.equal(1);
+      expect(newBinarySearchTree.min().value).to.equal(1);
     });
 
     it('should be able to find max', () => {
@@ -738,7 +738,54 @@ describe('data structure implementation', () => {
       newBinarySearchTree.insert(7);
       newBinarySearchTree.insert(8);
       newBinarySearchTree.insert(1);
-      expect(newBinarySearchTree.max()).to.equal(8);
+      expect(newBinarySearchTree.max().value).to.equal(8);
+    });
+
+    it('should be able remove node with no children', () => {
+      const nodeUnderObservation = newBinarySearchTree.insert(2);
+      newBinarySearchTree.insert(18);
+      newBinarySearchTree.insert(-4);
+      newBinarySearchTree.insert(3);
+
+      newBinarySearchTree.remove(-4);
+      expect(nodeUnderObservation.left).to.be.null;
+    });
+
+    it('should be able remove node with one child', () => {
+      newBinarySearchTree.insert(2);
+      newBinarySearchTree.insert(18);
+      newBinarySearchTree.insert(-4);
+      newBinarySearchTree.insert(3);
+      newBinarySearchTree.insert(18.5);
+      const nodeUnderObservation = newBinarySearchTree.insert(21);
+      newBinarySearchTree.insert(19);
+      newBinarySearchTree.insert(25);
+
+      newBinarySearchTree.remove(18.5);
+      newBinarySearchTree.remove(18);
+      expect(newBinarySearchTree.right).to.equal(nodeUnderObservation);
+      expect(newBinarySearchTree.right.root).to.equal(newBinarySearchTree);
+    });
+
+    it('should be able remove node with two child', () => {
+      newBinarySearchTree.insert(2);
+      newBinarySearchTree.insert(12);
+      newBinarySearchTree.insert(-4);
+      newBinarySearchTree.insert(3);
+      newBinarySearchTree.insert(9);
+      const nodeUnderObservation1 = newBinarySearchTree.insert(21);
+      const nodeUnderObservation2 = newBinarySearchTree.insert(19);
+      newBinarySearchTree.insert(25);
+
+      newBinarySearchTree.remove(12);
+
+      expect(nodeUnderObservation1.left).to.be.null;
+
+      expect(nodeUnderObservation2.root).to.equal(newBinarySearchTree);
+      expect(newBinarySearchTree.right).to.equal(nodeUnderObservation2);
+
+      expect(newBinarySearchTree.right).to.equal(newBinarySearchTree.right.left.root);
+      expect(newBinarySearchTree.right).to.equal(newBinarySearchTree.right.right.root);
     });
   });
 });

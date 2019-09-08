@@ -10,7 +10,8 @@ import {
   Tree,
   BinaryTree,
   AdjacencyMatrixGraph,
-  Graph
+  Graph,
+  BinarySearchTree
 } from "../src/dataStructure";
 
 chai.use(sinonChai);
@@ -679,6 +680,41 @@ describe('data structure implementation', () => {
         newGraph.breadthFirstTraversal(node1);
         expect(consoleLogStub).callCount(4);
       });
+    });
+  });
+
+  describe('binary search tree', () => {
+    let newBinarySearchTree;
+
+    beforeEach(() => {
+      newBinarySearchTree = new BinarySearchTree(6);
+    });
+
+    it('should be able to insert to binary search tree', () => {
+      newBinarySearchTree.insert(5);
+      newBinarySearchTree.insert(7);
+      expect(newBinarySearchTree.left.value).to.equal(5);
+      expect(newBinarySearchTree.right.value).to.equal(7);
+    });
+
+    it('should be able to insert more than one pair to binary search tree', () => {
+      const childToCheck1 = newBinarySearchTree.insert(5);
+      const childToCheck2 = newBinarySearchTree.insert(7);
+      newBinarySearchTree.insert(8);
+      newBinarySearchTree.insert(1);
+
+      expect(newBinarySearchTree.left.value).to.equal(5);
+      expect(newBinarySearchTree.right.value).to.equal(7);
+      expect(childToCheck1.left.value).to.equal(1);
+      expect(childToCheck2.right.value).to.equal(8);
+    });
+
+    it('should be able to check if binary search tree contains value', () => {
+      newBinarySearchTree.insert(5);
+      newBinarySearchTree.insert(7);
+      newBinarySearchTree.insert(8);
+      newBinarySearchTree.insert(1);
+      expect(newBinarySearchTree.contains(1)).to.be.true;
     });
   });
 });

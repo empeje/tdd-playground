@@ -541,6 +541,61 @@ class Graph {
   }
 }
 
+class BinarySearchTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+
+  insert(value) {
+    const newChild = new BinarySearchTree(value);
+
+    if(value < this.value) {
+      if(!this.left) {
+        this.left = newChild;
+      } else {
+        this.left.insert(value);
+      }
+    } else if(this.value < value) {
+      if(!this.right) {
+        this.right = newChild;
+      } else {
+        this.right.insert(value);
+      }
+    }
+
+    return newChild;
+  }
+
+  contains(value) {
+    if (value === this.value) return true;
+    if(value < this.value) return this.left.contains(value);
+    if(this.value < value) return this.right.contains(value);
+  }
+
+  min(node = null) {
+  }
+
+  max(node) {
+  }
+
+  remove(value) {
+  }
+
+  // left, root, right
+  inOrderTraversal(node, func = console.log) {
+  }
+
+  // root, left, right
+  preOrderTraversal(node, func = console.log) {
+  }
+
+  // left, right, root
+  postOrderTraversal(node, func = console.log) {
+  }
+}
+
 export {
   Stack,
   Queue,
@@ -549,5 +604,6 @@ export {
   Tree,
   BinaryTree,
   AdjacencyMatrixGraph,
-  Graph
+  Graph,
+  BinarySearchTree
 }

@@ -543,6 +543,7 @@ class Graph {
 
 class BinarySearchTree {
   constructor(value) {
+    this.root = null;
     this.value = value;
     this.left = null;
     this.right = null;
@@ -554,18 +555,20 @@ class BinarySearchTree {
     if(value < this.value) {
       if(!this.left) {
         this.left = newChild;
+        this.left.root = this;
+        return newChild;
       } else {
         this.left.insert(value);
       }
     } else if(this.value < value) {
       if(!this.right) {
         this.right = newChild;
+        this.right.root = this;
+        return newChild;
       } else {
         this.right.insert(value);
       }
     }
-
-    return newChild;
   }
 
   contains(value) {

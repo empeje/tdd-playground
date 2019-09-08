@@ -709,6 +709,14 @@ describe('data structure implementation', () => {
       expect(childToCheck2.right.value).to.equal(8);
     });
 
+    it('should not insert twice', () => {
+      newBinarySearchTree.insert(5);
+      newBinarySearchTree.insert(7);
+      newBinarySearchTree.insert(8);
+      newBinarySearchTree.insert(1);
+      expect(newBinarySearchTree.insert(1)).to.be.undefined;
+    });
+
     it('should be able to check if binary search tree contains value', () => {
       newBinarySearchTree.insert(5);
       newBinarySearchTree.insert(7);

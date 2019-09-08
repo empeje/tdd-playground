@@ -716,5 +716,21 @@ describe('data structure implementation', () => {
       newBinarySearchTree.insert(1);
       expect(newBinarySearchTree.contains(1)).to.be.true;
     });
+
+    it('should be able to find min', () => {
+      newBinarySearchTree.insert(5);
+      newBinarySearchTree.insert(7);
+      newBinarySearchTree.insert(8);
+      newBinarySearchTree.insert(1);
+      expect(newBinarySearchTree.min()).to.equal(1);
+    });
+
+    it('should be able to find max', () => {
+      newBinarySearchTree.insert(5);
+      newBinarySearchTree.insert(7);
+      newBinarySearchTree.insert(8);
+      newBinarySearchTree.insert(1);
+      expect(newBinarySearchTree.max()).to.equal(8);
+    });
   });
 });

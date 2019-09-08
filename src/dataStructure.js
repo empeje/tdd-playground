@@ -574,10 +574,14 @@ class BinarySearchTree {
     if(this.value < value) return this.right.contains(value);
   }
 
-  min(node = null) {
+  min() {
+    if(!this.left && !this.right) return this.value;
+    return this.left.min();
   }
 
-  max(node) {
+  max() {
+    if(!this.left && !this.right) return this.value;
+    return this.right.max();
   }
 
   remove(value) {

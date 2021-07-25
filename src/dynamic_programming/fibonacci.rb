@@ -1,6 +1,8 @@
-def fib(n, cache={})
-  return 1 if n == 0 || n == 1
-  return cache[n] if cache[n]
-
-  cache[n] = fib(n - 1, cache) + fib(n - 2, cache)
+def fib(n)
+  a = 1
+  b = 1
+  (1...n).each do |_|
+    a, b = b, a+b
+  end
+  b
 end

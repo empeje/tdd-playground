@@ -13,4 +13,11 @@ class TestMeme < Minitest::Test
     end
     assert_operator how_long.total, :<, 0.01
   end
+
+  def test_fibonacci_3
+    how_long = Benchmark.measure do
+      assert_equal 573147844013817084101, fib(100)
+    end
+    assert_operator how_long.total, :<, 0.01
+  end
 end

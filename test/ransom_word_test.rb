@@ -16,7 +16,7 @@ class Solution
   end
 end
 
-class ValidBstTest < Minitest::Test
+class RansomWordTest < Minitest::Test
   def test_one
     assert_equal true,  Solution.can_spell?(%w[a b c d e f], 'bcd')
   end

@@ -29,7 +29,7 @@ jobs:
       
     - name: Install Ruby dependencies
       run: bundle install
-      working-directory: packages/ruby-exercises
+      working-directory: packages/ruby-exercise
       
     - name: Install Ruby dependencies with nx
       run: pnpm dlx nx bundle ruby-exercise

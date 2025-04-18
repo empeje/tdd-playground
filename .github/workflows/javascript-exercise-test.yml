@@ -1,4 +1,4 @@
-name: Nx Test
+name: JavaScript Exercise Test
 
 on:
   push:

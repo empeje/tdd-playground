@@ -2,6 +2,7 @@
 __pycache__/
 coverage/
 reports/
+packages/python-exercise/.coverage
 
 # JavaScript - uses pnpm, ignore the rests
 node_modules/

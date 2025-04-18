@@ -1,28 +1,28 @@
 {
-  "name": "ruby-exercises",
+  "name": "ruby-exercise",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "packages/ruby-exercises/src",
+  "sourceRoot": "packages/ruby-exercise/src",
   "targets": {
     "test": {
       "executor": "nx:run-commands",
       "options": {
         "command": "ruby -Ilib:test test/**/*_test.rb",
-        "cwd": "packages/ruby-exercises"
+        "cwd": "packages/ruby-exercise"
       }
     },
     "run": {
       "executor": "nx:run-commands",
       "options": {
         "command": "ruby",
-        "cwd": "packages/ruby-exercises"
+        "cwd": "packages/ruby-exercise"
       }
     },
     "bundle": {
       "executor": "nx:run-commands",
       "options": {
         "command": "bundle install",
-        "cwd": "packages/ruby-exercises"
+        "cwd": "packages/ruby-exercise"
       }
     }
   },

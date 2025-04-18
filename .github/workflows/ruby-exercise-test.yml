@@ -27,10 +27,6 @@ jobs:
     - name: Install dependencies
       run: pnpm install
       
-    - name: Install Ruby dependencies
-      run: bundle install
-      working-directory: packages/ruby-exercise
-      
     - name: Install Ruby dependencies with nx
       run: pnpm dlx nx bundle ruby-exercise
       

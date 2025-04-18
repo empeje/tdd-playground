@@ -9,7 +9,7 @@ describe('exercise test', () => {
   describe('string exercises', () => {
     describe('string diff', () => {
       it('should be able to diff two strings', () => {
-        expect(diffBetweenTwoStrings('ABCDEFG', 'ABDFFGH')).to.equal(["A", "B", "-C", "D", "-E", "F", "+F", "G", "+H"])
+        expect(diffBetweenTwoStrings('ABCDEFG', 'ABDFFGH')).to.deep.equal(["A", "B", "-C", "D", "-E", "F", "+F", "G", "+H"])
       });
     });
   });

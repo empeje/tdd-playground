@@ -1,8 +1,10 @@
 # Python
 __pycache__/
 
-# JavaScript
+# JavaScript - uses pnpm, ignore the rests
 node_modules/
+yarn.lock
+package-lock.json
 
 # IDE
 .idea

@@ -1,5 +1,5 @@
 {
-  "name": "pisau-dapur",
+  "name": "javascript-exercise",
   "version": "0.0.1",
   "description": "Personal algorithm learning journey.",
   "main": "src/index.js",
@@ -17,6 +17,6 @@
   },
   "scripts": {
     "mocha": "npx mocha -r esm",
-    "test": "yarn mocha test/**/*.test.js"
+    "test": "pnpm mocha test/**/*.test.js"
   }
 }

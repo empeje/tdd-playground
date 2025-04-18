@@ -43,6 +43,15 @@ This document contains a collection of interview questions and problems commonly
   - Price calculation
   - Availability tracking
 
+### 6. Name Chain Problem
+- Type: Graph Theory & String Manipulation
+- Description: [Name Chain Problem](booking_com_name_chain.md)
+- Key concepts:
+  - Graph construction
+  - Path finding
+  - Character matching
+  - Hamiltonian paths
+
 ## System Design Questions
 
 ### 1. View Counter Service

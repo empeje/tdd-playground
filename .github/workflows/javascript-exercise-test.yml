@@ -3,8 +3,12 @@ name: JavaScript Exercise Test
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'packages/javascript-exercise/**'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'packages/javascript-exercise/**'
 
 jobs:
   test:

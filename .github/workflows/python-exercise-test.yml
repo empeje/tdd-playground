@@ -3,8 +3,12 @@ name: Python Exercise Test
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'packages/python-exercise/**'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'packages/python-exercise/**'
 
 jobs:
   test:

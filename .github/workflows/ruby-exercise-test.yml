@@ -3,8 +3,12 @@ name: Ruby Exercise Test
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'packages/ruby-exercise/**'
   pull_request:
     branches: [ master ]
+    paths:
+      - 'packages/ruby-exercise/**'
 
 jobs:
   test:

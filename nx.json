@@ -40,6 +40,9 @@
     "lint": {
       "inputs": ["default", "^default"],
       "cache": true
+    },
+    "test": {
+      "cache": true
     }
   }
 }

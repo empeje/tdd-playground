@@ -9,7 +9,8 @@
       "options": {
         "command": "ruby -Ilib:test test/**/*_test.rb",
         "cwd": "packages/ruby-exercise"
-      }
+      },
+      "cache": true
     },
     "run": {
       "executor": "nx:run-commands",

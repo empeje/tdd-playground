@@ -1,5 +1,7 @@
 # Python
 __pycache__/
+coverage/
+reports/
 
 # JavaScript - uses pnpm, ignore the rests
 node_modules/

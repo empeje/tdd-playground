@@ -19,5 +19,8 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@nxlv/python": "^20.13.3"
+  }
 }

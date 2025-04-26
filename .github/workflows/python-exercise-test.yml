@@ -37,4 +37,4 @@ jobs:
       run: pnpm dlx nx install python-exercise
       
     - name: Run tests
-      run: pnpm dlx nx test python-exercise
+      run: pnpm dlx nx test python-exercise --no-cloud

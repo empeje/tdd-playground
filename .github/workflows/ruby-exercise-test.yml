@@ -35,4 +35,4 @@ jobs:
       run: pnpm dlx nx bundle ruby-exercise
       
     - name: Run tests
-      run: pnpm dlx nx test ruby-exercise
+      run: pnpm dlx nx test ruby-exercise --no-cloud

@@ -28,6 +28,7 @@ This playground supports TDD exercises in multiple languages:
 - JavaScript/TypeScript
 - Ruby
 - Python
+- Java (URL Shortener REST API)
 
 Each language has its own setup and test configuration.
 
@@ -37,6 +38,7 @@ Each language has its own setup and test configuration.
 - pnpm (v10.8.1 or later)
 - Ruby (v3.2 or later) - for Ruby exercises
 - Python (v3.10 or later) - for Python exercises
+- Java (v17 or later) and Maven (v3.6+) - for Java exercises
 
 ## Getting Started
 
@@ -75,11 +77,21 @@ pnpm dlx nx install python-exercise
 pnpm dlx nx test python-exercise
 ```
 
+For Java exercises (URL Shortener):
+```bash
+cd packages/java-url-shortener
+# Build and test
+mvn clean test
+# Run the application
+mvn spring-boot:run
+```
+
 ## Project Structure
 
 - `/javascript-exercise` - JavaScript/TypeScript TDD exercises
 - `/ruby-exercise` - Ruby TDD exercises
 - `/python-exercise` - Python TDD exercises
+- `/java-url-shortener` - Java URL Shortener REST API with Spring Boot
 - Each exercise directory contains its own tests and implementation files
 
 ## Best Practices

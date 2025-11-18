@@ -28,6 +28,7 @@ This playground supports TDD exercises in multiple languages:
 - JavaScript/TypeScript
 - Ruby
 - Python
+- Java
 
 Each language has its own setup and test configuration.
 
@@ -37,6 +38,7 @@ Each language has its own setup and test configuration.
 - pnpm (v10.8.1 or later)
 - Ruby (v3.2 or later) - for Ruby exercises
 - Python (v3.10 or later) - for Python exercises
+- Java (v17 or later) and Maven (v3.6 or later) - for Java exercises
 
 ## Getting Started
 
@@ -75,12 +77,35 @@ pnpm dlx nx install python-exercise
 pnpm dlx nx test python-exercise
 ```
 
+For Java exercises:
+```bash
+cd packages/java-exercise
+# Build the project
+mvn clean install
+# Run tests
+mvn test
+# Run the application (Load Balancer example)
+mvn spring-boot:run
+```
+
 ## Project Structure
 
-- `/javascript-exercise` - JavaScript/TypeScript TDD exercises
-- `/ruby-exercise` - Ruby TDD exercises
-- `/python-exercise` - Python TDD exercises
+- `/packages/javascript-exercise` - JavaScript/TypeScript TDD exercises
+- `/packages/ruby-exercise` - Ruby TDD exercises
+- `/packages/python-exercise` - Python TDD exercises
+- `/packages/java-exercise` - Java TDD exercises (includes Load Balancer with REST API)
 - Each exercise directory contains its own tests and implementation files
+
+### Featured Projects
+
+#### Java Load Balancer
+The Java exercise includes a production-ready load balancer implementation with:
+- Service registry with REST API
+- Complete test suite (21 tests)
+- Design documentation with Mermaid diagrams
+- Full API documentation
+
+See [packages/java-exercise/README.md](packages/java-exercise/README.md) for details.
 
 ## Best Practices
 

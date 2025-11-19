@@ -2,7 +2,7 @@
 
 ## 1. Executive Summary
 
-This document describes the design and architecture of a URL shortener REST API service built using Spring Boot and Test-Driven Development (TDD) practices. The service provides a simple, efficient way to create and manage shortened URLs.
+This document describes the design and architecture of a URL shortener REST API service built using **core Java** (no frameworks) and Test-Driven Development (TDD) practices. The service provides a simple, efficient way to create and manage shortened URLs using only the Java standard library.
 
 ## 2. System Overview
 
@@ -37,11 +37,11 @@ The URL shortener service allows users to:
 
 ```mermaid
 graph LR
-    A[Client] -->|HTTP| B[Spring Boot Application]
+    A[Client] -->|HTTP| B[Java HttpServer]
     B -->|REST API| C[Controller Layer]
     C -->|Business Logic| D[Service Layer]
     D -->|Data Access| E[Repository Layer]
-    E -->|JPA| F[(H2 Database)]
+    E -->|In-Memory| F[(ConcurrentHashMap)]
     
     style A fill:#e1f5ff
     style B fill:#fff4e1
@@ -259,14 +259,12 @@ flowchart TD
 | Layer | Technology | Version | Purpose |
 |-------|-----------|---------|---------|
 | Language | Java | 17 | Programming language |
-| Framework | Spring Boot | 3.2.0 | Application framework |
-| Web | Spring Web | 3.2.0 | REST API |
-| Persistence | Spring Data JPA | 3.2.0 | Data access |
-| Database | H2 | 2.x | In-memory database |
+| HTTP Server | com.sun.net.httpserver.HttpServer | Built-in | REST API server |
+| JSON | Gson | 2.10.1 | JSON serialization |
+| Storage | ConcurrentHashMap | Built-in | Thread-safe in-memory storage |
 | Build | Maven | 3.6+ | Dependency management |
 | Testing | JUnit 5 | 5.10.x | Unit testing |
-| API Testing | REST Assured | 5.x | Integration testing |
-| Validation | Bean Validation | 3.0 | Input validation |
+| HTTP Client | Java HttpClient | Built-in | Integration testing |
 
 ## 9. Security Considerations
 

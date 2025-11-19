@@ -4,7 +4,7 @@ A Test-Driven Development (TDD) implementation of a URL shortener service with R
 
 ## Overview
 
-This is a REST API implementation of a URL shortener service built using Spring Boot and following TDD practices. The service allows users to create shortened URLs and redirect to the original URLs.
+This is a REST API implementation of a URL shortener service built using **core Java only** (no frameworks) and following TDD practices. The service uses Java's built-in `HttpServer` for REST API endpoints and in-memory storage. This demonstrates building a production-quality REST API using only the Java standard library.
 
 ## Features
 
@@ -12,7 +12,8 @@ This is a REST API implementation of a URL shortener service built using Spring 
 - **Retrieve Original URL**: Get the original URL from a short code
 - **Redirect**: Automatically redirect from short URL to original URL
 - **URL Validation**: Validate URLs before shortening
-- **In-Memory Storage**: Uses H2 database for simple persistence
+- **In-Memory Storage**: Uses ConcurrentHashMap for thread-safe persistence
+- **No External Frameworks**: Built with core Java only
 
 ## Architecture
 
@@ -34,20 +35,20 @@ graph TB
     Controller[URL Controller]
     Service[URL Shortener Service]
     Repository[URL Repository]
-    Database[(H2 Database)]
+    Storage[(ConcurrentHashMap)]
     
     Client -->|HTTP Request| Controller
     Controller -->|Validate & Process| Service
     Service -->|Generate Short Code| Service
     Service -->|Persist URL Mapping| Repository
-    Repository -->|CRUD Operations| Database
+    Repository -->|CRUD Operations| Storage
     Controller -->|HTTP Response| Client
     
     style Client fill:#e1f5ff
     style Controller fill:#fff4e1
     style Service fill:#ffe1e1
     style Repository fill:#e1ffe1
-    style Database fill:#f0e1ff
+    style Storage fill:#f0e1ff
 ```
 
 ### Sequence Diagram - Create Short URL
@@ -191,12 +192,12 @@ classDiagram
 ## Technology Stack
 
 - **Java 17**: Programming language
-- **Spring Boot 3.2.0**: Framework for building the REST API
-- **Spring Data JPA**: Data persistence
-- **H2 Database**: In-memory database
+- **com.sun.net.httpserver.HttpServer**: Built-in HTTP server for REST API
+- **ConcurrentHashMap**: Thread-safe in-memory storage
+- **Gson**: JSON serialization/deserialization
 - **Maven**: Build tool
 - **JUnit 5**: Testing framework
-- **REST Assured**: API testing
+- **Java HttpClient**: For integration testing
 
 ## Prerequisites
 
@@ -217,7 +218,13 @@ mvn clean install
 
 3. Run the application:
 ```bash
-mvn spring-boot:run
+java -cp target/classes:target/dependency/* com.tddplayground.urlshortener.UrlShortenerApplication
+```
+
+Or build an executable JAR:
+```bash
+mvn package
+java -jar target/url-shortener-1.0.0-SNAPSHOT.jar
 ```
 
 The API will be available at `http://localhost:8080`
@@ -231,8 +238,10 @@ mvn test
 
 Run tests with coverage:
 ```bash
-mvn test jacoco:report
+mvn test
 ```
+
+All tests use plain JUnit 5 without any framework dependencies.
 
 ## Usage Examples
 
@@ -280,15 +289,24 @@ This project was built following Test-Driven Development principles:
 
 ### Storage
 
-- H2 in-memory database for simplicity
-- Can be easily switched to PostgreSQL/MySQL for production
-- JPA entities for database abstraction
+- **ConcurrentHashMap** for thread-safe in-memory storage
+- **AtomicLong** for ID generation
+- No database dependencies - pure Java
+- Data is lost on restart (suitable for demonstration/testing)
 
 ### Error Handling
 
 - Custom exceptions for different error scenarios
-- Global exception handler for consistent error responses
+- Direct error handling in controller methods
 - Proper HTTP status codes
+- JSON error responses
+
+### HTTP Server
+
+- Uses Java's built-in `com.sun.net.httpserver.HttpServer`
+- No external web framework dependencies
+- Lightweight and fast startup
+- Simple routing based on URL patterns
 
 ## Future Enhancements
 

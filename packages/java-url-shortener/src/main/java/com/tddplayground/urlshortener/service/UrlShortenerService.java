@@ -4,12 +4,9 @@ import com.tddplayground.urlshortener.exception.ShortCodeGenerationException;
 import com.tddplayground.urlshortener.exception.UrlNotFoundException;
 import com.tddplayground.urlshortener.model.UrlMapping;
 import com.tddplayground.urlshortener.repository.UrlRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.security.SecureRandom;
 
-@Service
 public class UrlShortenerService {
 
     private static final String BASE62_CHARS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -23,14 +20,12 @@ public class UrlShortenerService {
         this.urlRepository = urlRepository;
     }
 
-    @Transactional
     public UrlMapping createShortUrl(String longUrl) {
         String shortCode = generateUniqueShortCode();
         UrlMapping urlMapping = new UrlMapping(shortCode, longUrl);
         return urlRepository.save(urlMapping);
     }
 
-    @Transactional
     public String getOriginalUrl(String shortCode) {
         UrlMapping urlMapping = urlRepository.findByShortCode(shortCode)
                 .orElseThrow(() -> new UrlNotFoundException(shortCode));
@@ -41,7 +36,6 @@ public class UrlShortenerService {
         return urlMapping.getLongUrl();
     }
 
-    @Transactional(readOnly = true)
     public UrlMapping getUrlInfo(String shortCode) {
         return urlRepository.findByShortCode(shortCode)
                 .orElseThrow(() -> new UrlNotFoundException(shortCode));

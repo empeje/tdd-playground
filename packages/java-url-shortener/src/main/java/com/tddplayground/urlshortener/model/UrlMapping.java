@@ -1,27 +1,14 @@
 package com.tddplayground.urlshortener.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity
-@Table(name = "url_mappings")
 public class UrlMapping {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "short_code", unique = true, nullable = false, length = 10)
     private String shortCode;
-
-    @Column(name = "long_url", nullable = false, length = 2048)
     private String longUrl;
-
-    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
-
-    @Column(name = "access_count", nullable = false)
     private int accessCount;
 
     public UrlMapping() {

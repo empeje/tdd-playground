@@ -1,15 +1,38 @@
 package com.tddplayground.urlshortener.repository;
 
 import com.tddplayground.urlshortener.model.UrlMapping;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
-@Repository
-public interface UrlRepository extends JpaRepository<UrlMapping, Long> {
+public class UrlRepository {
 
-    Optional<UrlMapping> findByShortCode(String shortCode);
+    private final Map<String, UrlMapping> storage = new ConcurrentHashMap<>();
+    private final AtomicLong idGenerator = new AtomicLong(1);
 
-    boolean existsByShortCode(String shortCode);
+    public UrlMapping save(UrlMapping urlMapping) {
+        if (urlMapping.getId() == null) {
+            urlMapping.setId(idGenerator.getAndIncrement());
+        }
+        storage.put(urlMapping.getShortCode(), urlMapping);
+        return urlMapping;
+    }
+
+    public Optional<UrlMapping> findByShortCode(String shortCode) {
+        return Optional.ofNullable(storage.get(shortCode));
+    }
+
+    public boolean existsByShortCode(String shortCode) {
+        return storage.containsKey(shortCode);
+    }
+
+    public void deleteAll() {
+        storage.clear();
+    }
+
+    public long count() {
+        return storage.size();
+    }
 }

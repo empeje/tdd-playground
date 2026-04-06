@@ -1,6 +1,8 @@
 name: Python Exercise Test
 
 on:
+  schedule:
+    - cron: '0 12 * * 1'
   push:
     branches: [ master ]
     paths:

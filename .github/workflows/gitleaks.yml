@@ -1,6 +1,8 @@
 name: GitLeaks
 
 on:
+  schedule:
+    - cron: '0 12 * * 1'
   push:
     branches: [ master ]
   pull_request:

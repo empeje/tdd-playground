@@ -9,8 +9,12 @@ node_modules/
 yarn.lock
 package-lock.json
 
+# Java
+target/
+
 # IDE
 .idea
+.DS_Store
 
 .nx/installation
 .nx/cache

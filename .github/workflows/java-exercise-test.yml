@@ -1,0 +1,38 @@
+name: Java Exercise Test
+
+on:
+  schedule:
+    - cron: '0 12 * * 1'
+  push:
+    branches: [ master ]
+    paths:
+      - 'packages/java-exercise/**'
+  pull_request:
+    branches: [ master ]
+    paths:
+      - 'packages/java-exercise/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '21'
+        cache: 'maven'
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: '10.8.1'
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Run tests
+      run: pnpm dlx nx test java-exercise --no-cloud

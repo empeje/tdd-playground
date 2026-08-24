@@ -20,6 +20,7 @@ This repository serves as a:
 - Place to experiment with different testing approaches
 - Collection of TDD examples and patterns
 - Space to improve code design through testing
+- Repository of interview problems and design patterns (Booking.com, FareHarbor, Revolut, etc.)
 
 ## Available Exercise Types
 
@@ -28,6 +29,7 @@ This playground supports TDD exercises in multiple languages:
 - JavaScript/TypeScript
 - Ruby
 - Python
+- Java
 
 Each language has its own setup and test configuration.
 
@@ -37,6 +39,7 @@ Each language has its own setup and test configuration.
 - pnpm (v10.8.1 or later)
 - Ruby (v3.2 or later) - for Ruby exercises
 - Python (v3.10 or later) - for Python exercises
+- Java (v21 or later) & Maven (v3.8 or later) - for Java exercises
 
 ## Getting Started
 
@@ -75,12 +78,26 @@ pnpm dlx nx install python-exercise
 pnpm dlx nx test python-exercise
 ```
 
+For Java exercises:
+```bash
+# Run tests
+pnpm dlx nx test java-exercise
+```
+
 ## Project Structure
 
-- `/javascript-exercise` - JavaScript/TypeScript TDD exercises
-- `/ruby-exercise` - Ruby TDD exercises
-- `/python-exercise` - Python TDD exercises
+- `/packages/problems-repository` - Markdown problem statements and interview guides (Booking.com, FareHarbor, Revolut, Cracking the Coding Interview)
+- `/packages/javascript-exercise` - JavaScript/TypeScript TDD exercises
+- `/packages/ruby-exercise` - Ruby TDD exercises
+- `/packages/python-exercise` - Python TDD exercises (Booking.com & FareHarbor problem suites)
+- `/packages/java-exercise` - Java TDD exercises (Revolut Load Balancer & URL Shortener suites)
 - Each exercise directory contains its own tests and implementation files
+
+## Problem Collections
+
+- **Booking.com**: Closest Hotels, Hotel List, Name Chain, Payment Logs
+- **FareHarbor**: Daily Summary Service, Dict Processing (Aggregate Revenue), Canonical BFS, Flood Fill, Shortest Path BFS, Sanitize JSON, Flatten Object
+- **Revolut**: In-Memory Load Balancer, URL Shortener & Base62, HTTP Reverse Proxy, In-Memory CRUD API
 
 ## Best Practices
 
@@ -108,4 +125,4 @@ This repository includes GitHub Actions workflows that automatically run tests f
 
 ## License
 
-MIT License - Feel free to use this playground for your own learning and practice. 
+MIT License - Feel free to use this playground for your own learning and practice.

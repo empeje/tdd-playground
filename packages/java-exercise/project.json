@@ -1,0 +1,25 @@
+{
+  "name": "java-exercise",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "packages/java-exercise/src",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mvn test",
+        "cwd": "packages/java-exercise"
+      },
+      "cache": true
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mvn compile",
+        "cwd": "packages/java-exercise"
+      },
+      "cache": true
+    }
+  },
+  "tags": ["java"]
+}
